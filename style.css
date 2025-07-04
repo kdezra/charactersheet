@@ -68,7 +68,7 @@ body {
   width:100%;
 }
 
-.sheet-overview span {
+.sheet-overview label {
   display:flex;
   align-items:center;
   gap:8px;
