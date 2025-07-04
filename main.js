@@ -37,12 +37,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'loc': 0
         }
         el.addEventListener("mousemove", (e) => {
-            ratings[e.target.id].loc = e.x - ratings[e.target.id].x;
+            const elId = e.target.getAttribute('id')
+            ratings[elId].loc = e.x - ratings[elId].x;
         });
         el.addEventListener("click", (e) => {
-            const elem = ratings[e.target.id]
+            const elId = e.target.getAttribute('id')
+            const elem = ratings[elId]
             const eloc = elem.loc
-            console.log(e.target.id, eloc, elem);
+            console.log(elId, eloc, elem);
 
             for (star in starLocs) {
                 if (eloc < starLocs[star]) {
