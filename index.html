@@ -7,16 +7,21 @@
 </head>
 
 <body>
-    <br><br>
     <p id="credits">Template adapted from cyparrisart</p>
     <p id="credits">From <a href="https://codepen.io/piee" target="_blank">Pie</a> on <a
             href="https://codepen.io/piee/pen/LYaLqQQ" target="_blank">Codepen</a></p>
     <div class="sheet-cont">
 
+        <div class="export">label
+           <label> <input id="share" type="button" disabled />Get Share Link </label>
+           <label> <input id="print" type="button">Export </label>
+           <input id="share-link" type="text" style="display: none;" readonly />
+        </div>
         <div class="sheet-top">
             <div>
             <div class="sheet-icon" id="portrait" style="background-image:url(https://images2.imgbox.com/15/b8/BJgofaAf_o.png);">
-            <input type="file" id="portrait-input"/></div>
+                <label id=""><input type="file" id="portrait-input"/></label>
+            </div>
             <label id="credits"><input type="text" placeholder="image credits"/></label>
             </div>
 
