@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             for (star in starLocs) {
                 if (eloc < starLocs[star]) {
                     console.log(star);
+                    elem.element.className = `rating ${star}`
                     break;
                 }
             }
