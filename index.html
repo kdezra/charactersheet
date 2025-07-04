@@ -15,7 +15,7 @@
 
         <div class="sheet-top">
             <div>
-            <div class="sheet-icon" style="background-image:url(https://images2.imgbox.com/15/b8/BJgofaAf_o.png);"></div>
+            <div class="sheet-icon" id="portrait" style="background-image:url(https://images2.imgbox.com/15/b8/BJgofaAf_o.png);"></div>
             <label id="credits"><input type="text"/></label>
             </div>
 
@@ -365,19 +365,7 @@
         </div>
 
     </div>
-    <script>
-        $(".sheet-cont h2").on("click", function () {
-            $(this).next().toggleClass("hidden");
-        });
-
-        $(".sheet-buttons b.expand").on("click", function () {
-            $(".sheet-main").removeClass("hidden");
-        });
-
-        $(".sheet-buttons b.collapse").on("click", function () {
-            $(".sheet-main").addClass("hidden");
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 
 </html>
