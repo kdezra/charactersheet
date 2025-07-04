@@ -137,6 +137,13 @@ input {
     background-size: 24px;
 }
 
+#portrait-label:hover {
+    background-color: var(--dark);
+}
+#portrait-label:active {
+    background-color: var(--dark-lite);
+}
+
 #in-height {
     width: 110px;
     margin-left: 5px;
