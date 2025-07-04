@@ -29,20 +29,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     document.querySelectorAll(".rating").forEach((el) => {
         const elLabel = el.lastElementChild.textContent;
-        ratings[`${elLabel}-rating`] = {
+        el.id = `${elLabel}-rating`
+        ratings[el.id] = {
             'element':el,
+            'bounds': el.getBoundingClientRect()
             'stars': 0,
             'loc': 0
         };
         el.addEventListener("mousemove", (e) => {
-            const bounds = e.target.getBoundingClientRect();
-            ratings.loc = e.x - bounds.x;
+            ratings[e.target.id].loc = e.x - ratings[e.target.id].x;
         });
         el.addEventListener("click", (e) => {
-            const elLabel = el.lastElementChild.textContent;
-            const elem = ratings[`${elLabel}-rating`]
+            const elem = ratings[e.target.id]
             const eloc = elem.loc
-            console.log(elLabel, eloc, elem);
+            console.log(e.target.id, eloc, elem);
 
             for (star in starLocs) {
                 if (eloc < starLocs[star]) {
