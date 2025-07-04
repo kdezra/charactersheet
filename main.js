@@ -1,7 +1,7 @@
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 
-const ratings = {}
+ratings = {}
 starLocs = {
     'one-half': 6,
     'one': 15,
