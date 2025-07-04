@@ -35,12 +35,11 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'loc': 0
         }
         el.addEventListener("mousemove", (e) => {
-            const elId = e.target.id
+            const elId = e.target.id||e.target.parentElement.id
             ratings[elId].loc = e.x - ratings[elId].x;
         });
         el.addEventListener("click", (e) => {
-            console.log(e)
-            const elId = e.target.id
+            const elId = e.target.id||e.target.parentElement.id
             const elem = ratings[elId]
             const eloc = elem.loc
             console.log(elId, eloc, elem);
@@ -48,7 +47,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             for (star in starLocs) {
                 if (eloc < starLocs[star]) {
                     console.log(star);
-                    elem.element.className = `rating ${star}`
+                    elem.element.classList = ['rating', 'star']
                     break;
                 }
             }
