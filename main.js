@@ -32,10 +32,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         el.id = `${elLabel}-rating`
         ratings[el.id] = {
             'element':el,
-            'bounds': el.getBoundingClientRect()
+            'bounds': el.getBoundingClientRect(),
             'stars': 0,
             'loc': 0
-        };
+        }
         el.addEventListener("mousemove", (e) => {
             ratings[e.target.id].loc = e.x - ratings[e.target.id].x;
         });
