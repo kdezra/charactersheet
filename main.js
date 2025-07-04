@@ -2,6 +2,18 @@ const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 
 const ratings = {}
+starLocs = {
+    'one-half': 6,
+    'one': 15,
+    'two-half': 28,
+    'two': 37,
+    'three-half': 46,
+    'three': 55,
+    'four-half': 65,
+    'four': 76,
+    'five-half': 89,
+    'five': 200
+}
 
 document.addEventListener("DOMContentLoaded", (event) => {
     fileInput.addEventListener('change', (e) => {
@@ -30,26 +42,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elLabel = el.lastElementChild.textContent;
             const elem = ratings[`${elLabel}-rating`]
             const eloc = ratings.loc
-            if (eloc < 6) {
-                console.log(".5 star")
-            } else if (eloc < 15) {
-                console.log("1 star")
-            } else if (eloc < 28) {
-                console.log("1.5 star")
-            } else if (eloc < 37) {
-                console.log("2 star")
-            } else if (eloc < 46) {
-                console.log("2.5 star")
-            } else if (eloc < 55) {
-                console.log("3 star")
-            } else if (eloc < 65) {
-                console.log("3.5 star")
-            } else if (eloc < 76) {
-                console.log("4 star")
-            } else if (eloc < 89) {
-                console.log("4.5 star")
-            } else {
-                console.log("5 star")
+            console.log(elLabel, eloc, elem);
+
+            for (star in starLocs) {
+                if (eloc < starLocs[star]) {
+                    console.log(star);
+                    break;
+                }
             }
         })
     });
