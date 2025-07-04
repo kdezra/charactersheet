@@ -10,29 +10,30 @@
     <p id="credits">Template adapted from cyparrisart</p>
     <p id="credits">From <a href="https://codepen.io/piee" target="_blank">Pie</a> on <a
             href="https://codepen.io/piee/pen/LYaLqQQ" target="_blank">Codepen</a></p>
+    <div class="export"
+        style="/*! background: wheat; */display: flex;justify-content: center;padding: 10px;background: var(--accent);flex-direction: row;">
+        <input id="print" type="button" value="Export"><input id="share" type="button" disabled=""
+            value="Get Share Link">
+        <input id="share-link" type="text" style="display: none;" readonly="">
+    </div>
     <div class="sheet-cont">
-
-        <div class="export">
-           <label> <input id="share" type="button" disabled />Get Share Link </label>
-           <label> <input id="print" type="button">Export </label>
-           <input id="share-link" type="text" style="display: none;" readonly />
-        </div>
         <div class="sheet-top">
             <div>
-            <div class="sheet-icon" id="portrait" style="background-image:url(https://images2.imgbox.com/15/b8/BJgofaAf_o.png);">
-                <label id=""><input type="file" id="portrait-input"/></label>
-            </div>
-            <label id="credits"><input type="text" placeholder="image credits"/></label>
+                <div class="sheet-icon" id="portrait"
+                    style="background-image:url(https://images2.imgbox.com/15/b8/BJgofaAf_o.png);">
+                    <label id="portrait-label"><input type="file" id="portrait-input" /></label>
+                </div>
+                <label id="credits"><input type="text" placeholder="image credits" /></label>
             </div>
 
             <div class="sheet-overview">
-                <label><b>NAME:</b> <input id="in-name" type="text" placeholder="name"/></label>
-                <label><b>NICKNAMES:</b> <input id="in-nicknames" type="text" placeholder="nicknames"/></label>
-                <label><b>AGE:</b> <input id="in-age" type="text" placeholder="age"/></label>
-                <label><b>GENDER:</b> <input id="in-gender" type="text" placeholder="gender"/></label>
-                <label><b>PRONOUNS:</b> <input id="in-pronouns" type="text" placeholder="pronouns"/></label>
-                <label><b>HERITAGE:</b> <input id="in-heritage" type="text" placeholder="heritage"/></label>
-                <label><b>CLASS:</b> <input id="in-class" type="text" placeholder="class"/></label>
+                <label><b>NAME:</b> <input id="in-name" type="text" placeholder="name" /></label>
+                <label><b>NICKNAMES:</b> <input id="in-nicknames" type="text" placeholder="nicknames" /></label>
+                <label><b>AGE:</b> <input id="in-age" type="text" placeholder="age" /></label>
+                <label><b>GENDER:</b> <input id="in-gender" type="text" placeholder="gender" /></label>
+                <label><b>PRONOUNS:</b> <input id="in-pronouns" type="text" placeholder="pronouns" /></label>
+                <label><b>HERITAGE:</b> <input id="in-heritage" type="text" placeholder="heritage" /></label>
+                <label><b>CLASS:</b> <input id="in-class" type="text" placeholder="class" /></label>
             </div>
 
         </div>
@@ -40,7 +41,7 @@
         <h2>body</h2>
         <div class="sheet-main">
             <div class="left">
-                <label><input  id="in-height" type="text"/><b>HEIGHT</b></label>
+                <label><input id="in-height" type="text" /><b>HEIGHT</b></label>
                 <span class="rating four"><span></span> <span></span> <span></span> <span></span> <span></span>
                     <b>STRENGTH</b></span>
 

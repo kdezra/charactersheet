@@ -131,6 +131,14 @@ input {
     font-size: 0.9em;
 }
 
+.export {
+    display: flex;
+  justify-content: center;
+  padding: 10px;
+  background: var(--accent);
+  flex-direction: row;
+}
+
 .sheet-overview span>b {
     font-weight: 400;
     color: var(--accent);
