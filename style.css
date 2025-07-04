@@ -87,7 +87,7 @@ body {
 
 input {
     background-color: var(--dark);
-    color: var(--blue);
+    color: var(--accent);
     border: none;
 }
 
@@ -101,30 +101,45 @@ input {
 #credits input {
     font-style: italic;
     font-size: .75em;
-    color: var(--accent);
     text-align: center;
     width: 180px;
 }
 
 ::placeholder {
-  opacity: 0.5;
-  font-style: italic;
-  font-size: smaller;
+    opacity: 0.5;
+    font-style: italic;
+    font-size: smaller;
 }
 
 ::-ms-input-placeholder {
-  opacity: 0.5;
-  font-style: italic;
-  font-size: smaller;
+    opacity: 0.5;
+    font-style: italic;
+    font-size: smaller;
 }
 
 #portrait-input {
-  display: none;
+    display: none;
+}
+
+#portrait-label {
+    position: relative;
+    top: calc(100% - 32px);
+    left: calc(100% - 32px);
+    width: 32px;
+    display: block;
+    height: 32px;
+    background-image: url("camera.png");
+    z-index: 11;
+    border-radius: 0 0 10px 0;
+    background-color: var(--dark-55);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 24px;
 }
 
 #in-height {
-  width: 110px;
-  margin-left: 5px;
+    width: 110px;
+    margin-left: 5px;
 }
 
 .left label {
@@ -133,10 +148,10 @@ input {
 
 .export {
     display: flex;
-  justify-content: center;
-  padding: 10px;
-  background: var(--accent);
-  flex-direction: row;
+    justify-content: center;
+    padding: 10px;
+    background: var(--accent);
+    flex-direction: row;
 }
 
 .sheet-overview span>b {
