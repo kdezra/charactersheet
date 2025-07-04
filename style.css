@@ -118,6 +118,19 @@ input {
   font-size: smaller;
 }
 
+#portrait-input {
+  display: none;
+}
+
+#in-height {
+  width: 110px;
+  margin-left: 5px;
+}
+
+.left label {
+    font-size: 0.9em;
+}
+
 .sheet-overview span>b {
     font-weight: 400;
     color: var(--accent);
