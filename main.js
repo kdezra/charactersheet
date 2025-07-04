@@ -1,4 +1,5 @@
-const fileInput = document.getElementById('portrait');
+const fileInput = document.getElementById('portrait-input');
+const image = document.getElementById('portrait');
 
 fileInput.addEventListener('change', (e) => {
     const file = e.target.files[0];
@@ -7,7 +8,7 @@ fileInput.addEventListener('change', (e) => {
     fileReader.readAsDataURL(file);
     fileReader.onload = function () {
         // images[0].setAttribute('src', fileReader.result);
-        fileInput.setAttribute('style', `background-image: url('${fileReader.result}')`);
+        image.setAttribute('style', `background-image: url('${fileReader.result}')`);
     }
 })
 
