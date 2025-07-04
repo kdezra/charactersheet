@@ -15,7 +15,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     document.querySelectorAll(".rating").forEach(el => {
         el.addEventListener("mouseover", (e) => {
-            console.log(e.x);
+            const bounds = e.target.getBoundingClientRect();
+            const eloc = e.x - bounds.x;
+            console.log(eloc);
         });
     });
 })
