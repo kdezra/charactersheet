@@ -36,7 +36,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
         el.addEventListener("mousemove", (e) => {
             const elId = e.target.id||e.target.parentElement.id
-            ratings[elId].loc = e.x - ratings[elId].x;
+            const elem = ratings[elId]
+            elem.loc = e.x - elem.x;
         });
         el.addEventListener("click", (e) => {
             const elId = e.target.id||e.target.parentElement.id
@@ -47,7 +48,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             for (star in starLocs) {
                 if (eloc < starLocs[star]) {
                     console.log(star);
-                    elem.element.classList = ['rating', 'star']
+                    elem.element.classList = `rating ${star}`
+                    elem.stars = star
                     break;
                 }
             }
