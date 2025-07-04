@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         el.addEventListener("mousemove", (e) => {
             const elId = e.target.id||e.target.parentElement.id
             const elem = ratings[elId]
-            elem.loc = e.x - elem.x;
+            elem.loc = e.x - elem.bounds.x;
         });
         el.addEventListener("click", (e) => {
             const elId = e.target.id||e.target.parentElement.id
