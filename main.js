@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
     })
 })
 
-$(".sheet-cont h2").on("click", function () {
-    $(this).next().toggleClass("hidden");
-});
+// $(".sheet-cont h2").on("click", function () {
+//     $(this).next().toggleClass("hidden");
+// });
 
-$(".sheet-buttons b.expand").on("click", function () {
-    $(".sheet-main").removeClass("hidden");
-});
+// $(".sheet-buttons b.expand").on("click", function () {
+//     $(".sheet-main").removeClass("hidden");
+// });
 
-$(".sheet-buttons b.collapse").on("click", function () {
-    $(".sheet-main").addClass("hidden");
-});
+// $(".sheet-buttons b.collapse").on("click", function () {
+//     $(".sheet-main").addClass("hidden");
+// });
