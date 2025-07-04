@@ -28,8 +28,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
 
     document.querySelectorAll(".rating").forEach((el) => {
-        const elLabel = el.lastElementChild.textContent;
-        el.id = `${elLabel}-rating`
         ratings[el.id] = {
             'element':el,
             'bounds': el.getBoundingClientRect(),
