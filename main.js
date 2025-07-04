@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         el.addEventListener("click", (e) => {
             const elLabel = el.lastElementChild.textContent;
             const elem = ratings[`${elLabel}-rating`]
-            const eloc = ratings.loc
+            const eloc = elem.loc
             console.log(elLabel, eloc, elem);
 
             for (star in starLocs) {
