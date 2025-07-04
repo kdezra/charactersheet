@@ -11,5 +11,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
             // images[0].setAttribute('src', fileReader.result);
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
         }
-    })
+    });
+
+    document.querySelectorAll(".rating").forEach(el => {
+        el.addEventListener("mouseover", (e) => {
+            console.log(e.x);
+        });
+    });
 })
+
