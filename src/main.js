@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'perc': 0
         }
         
-        el.addEventListener("mousedown", (e) => {
+        el.addEventListener("click", (e) => {
             console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
