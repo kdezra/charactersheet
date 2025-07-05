@@ -1,6 +1,6 @@
 const inputData = {}
 const storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
-const imgStorage = null;
+let imgStorage = null;
 const storageKey = "CHARTAB_store"
 
 const fileInput = document.getElementById('portrait-input');
