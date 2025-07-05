@@ -191,9 +191,11 @@ input {
     background-position: center;
     background-repeat: no-repeat;
     background-size: 24px;
+    opacity: 0.8;
 }
 .img-control:hover {
     background-color: var(--dark);
+    opacity: 1;
 }
 .img-control:active {
     background-color: var(--dark-lite);

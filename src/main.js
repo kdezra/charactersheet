@@ -38,20 +38,33 @@ function dataURItoBlob(dataURI) {
 
 function compressImage(dataURI) {
     console.log(dataURItoBlob(dataURI))
-    const width = 180; 
-    const height = 240; 
-    const img = document.createElement('img')
+    const img = new Image()
     img.src = dataURI
-    const canvas = document.createElement('canvas')
-    canvas.style.background = "#08080B";
-    canvas.width  = width;  // Set the width of the Canvas
-    canvas.height = height;  // Set the height of the Canvas
-    canvas.getContext("2d").drawImage(img,0,0,width,height)
-    const newURI = canvas.toDataURL("image/jpeg", "0.5")
-    console.log(canvas)
-    console.log(img)
-    console.log(dataURItoBlob(newURI))
-    return newURI
+    img.onload = function () {
+        oh   nh
+        -- = --
+        ow   x
+        const canvas = document.createElement('canvas')
+        canvas.style.background = "#08080B";
+        canvas.width  = 180; 
+        canvas.height = 240; 
+        const ratio = img.height / img.width
+        let xOff = 0
+        let yOff = 0
+        if (ratio > 1){
+            img.height = Math.min(240, img.height)
+            img.width = "auto"
+        } else {
+            img.width = Math.min(180, img.width)
+            img.height = "auto"
+        }
+        let ctx = canvas.getContext("2d")
+        ctx.drawImage(img,xOff,yOff)
+        const newURI = canvas.toDataURL("image/jpeg", "0.5")
+        console.log(canvas)
+        console.log(img)
+        console.log(dataURItoBlob(newURI))
+    }
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
