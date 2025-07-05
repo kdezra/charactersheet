@@ -41,7 +41,8 @@ function compressImage(dataURI) {
     const img = new Image()
     img.src = dataURI
     img.onload = function () {
-        const canvas = document.createElement('canvas')
+        // const canvas = document.createElement('canvas')
+        const canvas = document.getElementById('canvas')
         canvas.style.background = "#08080B";
         canvas.width  = 180; 
         canvas.height = 240; 
@@ -49,11 +50,15 @@ function compressImage(dataURI) {
         let xOff = 0
         let yOff = 0
         if (ratio > 1){
-            img.height = Math.min(240, img.height)
-            img.width = "auto"
+            let h = Math.min(240, img.height)
+            let w = img.width*h/img.height
+            img.height = h
+            img.width = w
         } else {
-            img.width = Math.min(180, img.width)
-            img.height = "auto"
+            let w = Math.min(180, img.width)
+            let h = img.height*w/img.width
+            img.height = h
+            img.width = w
         }
         let ctx = canvas.getContext("2d")
         ctx.drawImage(img,xOff,yOff)
