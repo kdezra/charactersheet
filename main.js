@@ -68,10 +68,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Sliders
     document.querySelectorAll(".slider").forEach((el) => {
+        const sliderline = el.children[1]
+        const slidermark = sliderline.children[0]
         inputData[el.id] = {
             'type': 'slide',
             'element':el,
-            'bounds': el.getBoundingClientRect(),
+            'mark':slidermark,
+            'bounds': sliderline.getBoundingClientRect(),
             'perc': 0,
             'loc': 0
         }
@@ -81,7 +84,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
-            elem.perc = 100*(elem.loc / elem.bounds.width);
+            elem.perc = Math.max(0,Math.min((elem.loc / elem.bounds.width),1));
+            elem.slidermark.style.width = `${round(100*elem.perc)}%`;
             console.log(elem.perc)
         });
     })
