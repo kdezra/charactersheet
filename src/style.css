@@ -469,20 +469,25 @@ input {
 }
 
 @media print {
+    body {
+
+    }
     .head {
         display: none;
     }
-    .sheet-cont,
-    .controls {
+    .sheet-cont {
         box-sizing: border-box;
-        /* background-color: var(--dark); */
+        background-color: var(--accent);
         margin: auto;
         width: 550px;
         font-weight: 400;
     }
-    .btns,
+    .controls,
+    .img-control {
+        display: none;
+    }
     ::placeholder,
     ::-ms-input-placeholder {
-        display: none;
+        opacity: 0;
     }
 }

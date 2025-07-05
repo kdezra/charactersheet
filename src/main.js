@@ -1,5 +1,5 @@
-const inputData = {'imageData':null}
-const storage = {}
+const inputData = {}
+const storage = {'img':{}, 'radio':{}, 'slider':{}, 'text':{}, 'check':{}}
 
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
@@ -30,61 +30,113 @@ function findParent(e, c, attr = "class") {
     return;
 }
 
+function setStorage() {
+    for (key in inputData) {
+        storage[inputData[key].type][key] = inputData[key].data
+    }
+    console.log(storage)
+}
+function readStorage() {
+    for (elType in storage) {
+        let typeIds = storage[elType]
+        for (key in typeIds) {
+            inputData[key] = {'type': elType, 'data': typeIds[key]}
+        }
+    }
+    console.log(inputData)
+}
+
+function resetAll() {
+    resetKey = {'img':'', 'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
+    for (key in inputData) {
+        let elType = inputData[key].type;
+        let resetVal = resetKey[elType]
+        const el = document.getElementById(key)
+        switch (elType) {
+            case "text":
+                el.value = resetVal
+                break;
+            case "radio":
+                el.classList = `rating ${resetVal}`
+                break;
+            case "slide":
+                const sliderline = el.children[1]
+                const slidermark = sliderline.children[0]
+                slidermark.style.width = resetVal
+                break;
+            case "check":
+                el.classList = `box ${resetVal}`.trim()
+                break;
+            case "img":
+                image.setAttribute('style', resetVal);
+                break;
+            default:  break;
+        }
+    }
+    setStorage()
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
-
         let fileReader = new FileReader();
         fileReader.readAsDataURL(file);
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
-            inputData.imageData = fileReader.result;
+            inputData.portrait = {'type':'img' ,'data': fileReader.result};
         }
     });
 
     clearBtn.addEventListener('click', (e) => {
-        inputData.imageData = null
+        inputData.portrait.data = ''
         image.setAttribute('style', '');
+        setStorage()
     });
+
+    printBtn.addEventListener('click', print)
+    resetBtn.addEventListener('click', resetAll)
 
     // Text Fill
     document.querySelectorAll(".text-fill").forEach((el) => {
-        inputData[el.id] = {
-            'type':'text',
-            'element':el,
-            'val': 0
+        if (el.id in inputData) {
+            el.value = inputData[el.id].data
+        } else {
+            inputData[el.id] = {'type':'text', 'data': ''}
         }
         el.addEventListener("change", (e) => {
-            console.log("TEXT CHANGED", e)
+            const elId = e.target.id
+            inputData[elId].data = e.target.value
+            setStorage()
         })
     });
 
 
     // Radio Selections
     document.querySelectorAll(".rating").forEach((el) => {
-        inputData[el.id] = {
-            'type':'radio',
-            'element':el,
-            'bounds': el.getBoundingClientRect(),
-            'n': 'zero'
+        if (el.id in inputData) {
+            el.classList = `rating ${inputData[el.id].data}`
+        } else {
+            inputData[el.id] = {'type':'radio', 'data':'zero'}
         }
+        inputData[el.id].element = el
+        inputData[el.id].bounds = el.getBoundingClientRect()
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
             if (e.shiftKey) {
                 elem.element.classList = 'rating zero'
-                elem.n = 'zero'
+                elem.data = 'zero'
             } else{
                 for (n in nLocs) {
                     if (loc < nLocs[n]) {
-                        console.log(n);
                         elem.element.classList = `rating ${n}`
-                        elem.n = n
+                        elem.data = n
                         break;
                     }
                 }
             }
+            setStorage()
         })
     });
 
@@ -92,67 +144,56 @@ document.addEventListener("DOMContentLoaded", (event) => {
     document.querySelectorAll(".slider").forEach((el) => {
         const sliderline = el.children[1]
         const slidermark = sliderline.children[0]
-        inputData[el.id] = {
-            'type': 'slide',
-            'element':el,
-            'mark':slidermark,
-            'bounds': sliderline.getBoundingClientRect(),
-            'perc': 0
+        if (el.id in inputData) {
+            slidermark.style.width = inputData[el.id].data
+        } else {
+            inputData[el.id] = {'type': 'slide','data': '0%'}
         }
+        inputData[el.id].mark = slidermark
+        inputData[el.id].bounds = sliderline.getBoundingClientRect()
+
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
-            const perc = loc / elem.bounds.width
-            console.log(e, elem, perc, loc)
-            elem.perc = 100*Math.max(0, Math.min(1, perc));
-            elem.mark.style.width = `${Math.round(elem.perc)}%`;
-            console.log(elem.perc)
+            const perc = 100*Math.max(0, Math.min(1, loc / elem.bounds.width));
+            elem.data = `${Math.round(elem.perc)}%`;
+            elem.mark.style.width = elem.data;
+            setStorage()
         });
     })
 
+    document.querySelectorAll(".box").forEach((el) => {
+        if (el.id in inputData) {
+            const chk = ['', 'checked', 'checkedish', 'checkedidk']
+            const i = inputData[el.id].data
+            el.classList = `box ${chk[i]}`.trim()
+        } else {
+            inputData[el.id] = {'type': 'check', 'data': 0}
+        }
+        inputData[el.id].element = el
+        el.addEventListener("click", (e) => {
+            const chk = ['', 'checked', 'checkedish', 'checkedidk']
+            const elId = e.target.id
+            const elem = inputData[elId]
+            let i = 0
+            if !(e.ctrlKey && e.shiftKey)||!elem.data{
+                i = e.shiftKey?2:(e.ctrlKey?3:1)
+            }
+            elem.element.classList = `box ${chk[i]}`.trim()
+            elem.data = i
+            setStorage()
+        });
+    })
 
     window.addEventListener("resize", (e) => {
         document.querySelectorAll(".slider").forEach((el) => {
             const sliderline = el.children[1]
             inputData[el.id].bounds = sliderline.getBoundingClientRect()
         })
+        document.querySelectorAll(".rating").forEach((el) => {
+            inputData[el.id].bounds = el.getBoundingClientRect()
+        })
     });
-
-
-    document.querySelectorAll(".box").forEach((el) => {
-        inputData[el.id] = {
-            'type': 'check',
-            'element':el,
-            'checked': false,
-            'checkedish': false,
-            'checkedidk': false
-        }
-        el.addEventListener("click", (e) => {
-            const elId = e.target.id
-            const elem = inputData[elId]
-            if (e.ctrlKey && e.shiftKey) {
-                elem.checked = false
-                elem.checkedish = false
-                elem.checkedidk = false
-                elem.element.classList = 'box';
-            } else if (e.shiftKey) {
-                elem.checkedish = !elem.checkedish
-                elem.checked = false
-                elem.checkedidk = false
-                elem.element.classList = elem.checkedish?'box checkedish':'box';
-            } else if (e.ctrlKey) {
-                elem.checked = false
-                elem.checkedish = false
-                elem.checkedidk = !elem.checkedidk
-                elem.element.classList = elem.checkedidk?'box checkedidk':'box';
-            } else {
-                elem.checked = !elem.checked
-                elem.checkedish = false
-                elem.checkedidk = false
-                elem.element.classList = elem.checked?'box checked':'box';
-            }
-        });
-    })
 })
 
