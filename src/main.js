@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelectorAll(".slider").forEach((el) => {
             const sliderline = el.children[1]
             inputData[el.id].bounds = sliderline.getBoundingClientRect()
-        }
+        })
     });
 
 
