@@ -16,6 +16,16 @@ const starLocs = {
     'five': 110
 }
 
+function findParent(e, c, attr = "class") => {
+    if ((e.getAttribute(attr)||" ").split(" ").includes(c)) {return e;}
+    let el = e;
+    while( el.parentElement != null){
+        el = el.parentElement;
+        if ((el.getAttribute(attr)||" ").split(" ").includes(c)) {return el;}
+    }
+    return;
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
     // Image Upload
     fileInput.addEventListener('change', (e) => {
@@ -30,7 +40,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
 
-    // Check Boxes
+    // Radio Selections
     document.querySelectorAll(".rating").forEach((el) => {
         inputData[el.id] = {
             'type':'radio',
@@ -40,12 +50,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'loc': 0
         }
         el.addEventListener("mousemove", (e) => {
-            const elId = e.target.id||e.target.parentElement.id
+            const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
         });
         el.addEventListener("click", (e) => {
-            const elId = e.target.id||e.target.parentElement.id
+            const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
             const eloc = elem.loc
             console.log(elId, eloc, elem);
@@ -62,7 +72,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     });
 
     // Sliders
-    document.querySelectorAll(".sliderline").forEach((el) => {
+    document.querySelectorAll(".slider").forEach((el) => {
         inputData[el.id] = {
             'type': 'slide',
             'element':el,
@@ -71,7 +81,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'loc': 0
         }
         el.addEventListener("mousemove", (e) => {
-            const elId = e.target.id||e.target.parentElement.id
+            const elClass = findParent(e.target, "slider").id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
         });
