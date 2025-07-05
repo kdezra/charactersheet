@@ -181,28 +181,34 @@ input {
     display: none;
 }
 
-#portrait-label {
+.img-control {
     position: relative;
-    top: calc(100% - 32px);
-    left: calc(100% - 32px);
-    width: 32px;
     display: block;
+    top: calc(100% - 32px);
+    width: 32px;
     height: 32px;
-    background-image: url("assets/camera.png");
     z-index: 11;
-    border-radius: 0 0 10px 0;
     background-color: var(--dark-55);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 24px;
 }
-
-#portrait-label:hover {
+.img-control:hover {
     background-color: var(--dark);
 }
-
-#portrait-label:active {
+.img-control:active {
     background-color: var(--dark-lite);
+}
+
+#portrait-label {
+    left: calc(100% - 32px);
+    background-image: url("assets/camera.png");
+    border-radius: 0 0 10px 0;
+}
+#portrait-clear {
+    left: calc(100% - 64px);
+    background-image: url("assets/undo.png");
+    border-radius: 0;
 }
 
 #in-height {
