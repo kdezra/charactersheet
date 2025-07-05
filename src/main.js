@@ -41,7 +41,7 @@ function compressImage(dataURI) {
     const width = 180; 
     const height = 240; 
     const img = document.createElement('img')
-    img.setAttribute('src', dataURI)
+    img.src = dataURI
     const canvas = document.createElement('canvas')
     canvas.style.background = "#08080B";
     canvas.width  = width;  // Set the width of the Canvas
