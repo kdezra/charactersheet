@@ -108,7 +108,6 @@ function resetAll() {
     console.log(inputData)
 }
 
-// Populate the save dropdown
 function populateSaveDropdown() {
   select.innerHTML = ''; // Clear
   const defaultOpt = document.createElement('option');
