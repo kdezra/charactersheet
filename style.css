@@ -34,25 +34,38 @@
 
 body {
     background: var(--dark);
-    color: var(--light);
     margin: 0;
     padding: 1em;
     line-height: 14px;
+    font-family: var(--fontSans);
+    color: var(--light);
+}
+
+
+
+.sheet-cont,
+.export {
+    box-sizing: border-box;
+    background-color: var(--dark);
+    margin: auto;
+    width: 550px;
+    font-weight: 400;
 }
 
 .sheet-cont {
-    background-color: var(--dark);
-    width: 550px;
     min-height: 250px;
     border-radius: 10px;
     border: 1px solid var(--divider);
-    color: var(--light);
-    margin: auto;
     padding: 40px;
-    box-sizing: border-box;
-    font-family: var(--fontSans);
-    font-weight: 400;
     line-height: 200%;
+}
+
+.export {
+    display: flex;
+    justify-content: right;
+    padding: 10px 20px;
+    background: var(--accent);
+    flex-direction: row;
 }
 
 .sheet-icon {
@@ -155,14 +168,6 @@ input {
 
 .left label {
     font-size: 0.9em;
-}
-
-.export {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-    background: var(--accent);
-    flex-direction: row;
 }
 
 .sheet-overview span>b {
