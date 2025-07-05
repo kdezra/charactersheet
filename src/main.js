@@ -3,6 +3,7 @@ inputData = {'imageData':null}
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 const nLocs = {
+    '': 5,
     'one-half': 13,
     'one': 20,
     'two-half': 33,
