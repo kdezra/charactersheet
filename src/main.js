@@ -26,20 +26,31 @@ function findParent(e, c, attr = "class") {
 }
 
 function dataURItoBlob(dataURI) {
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
     var byteString = atob(dataURI.split(',')[1]);
 
-    // separate out the mime component
     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
-    // write the bytes of the string to an ArrayBuffer
     var ab = new ArrayBuffer(byteString.length);
     var ia = new Uint8Array(ab);
     for (var i = 0; i < byteString.length; i++) {
         ia[i] = byteString.charCodeAt(i);
     }
     return new Blob([ab], {type: mimeString});
+}
+
+function compressImage(dataURI) {
+    console.log(dataURItoBlob(dataURI))
+    const width = 180; 
+    const height = 240; 
+    const img = document.createElement('img')
+    img.setAttribute('src', dataURI)
+    const canvas = document.createElement('canvas')
+    canvas.width  = width;  // Set the width of the Canvas
+    canvas.height = height;  // Set the height of the Canvas
+    canvas.getContext("2d").drawImage(img,0,0,width,height)
+    const newURI = canvas.toDataURL("image/jpeg")
+    console.log(dataURItoBlob(newURI))
+    return newURI
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -52,7 +63,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
             inputData.imageData = fileReader.result;
-            console.log(dataURItoBlob(inputData.imageData))
+            console.log(compressImage(inputData.imageData))
         }
     });
 
