@@ -36,6 +36,26 @@ function dataURItoBlob(dataURI) {
     return new Blob([ab], {type: mimeString});
 }
 
+function drawImageCover(ctx, img, canvasWidth, canvasHeight) {
+    const imgRatio = img.width / img.height;
+    const canvasRatio = canvasWidth / canvasHeight;
+    let drawWidth, drawHeight, offsetX, offsetY;
+    if (imgRatio > canvasRatio) {
+        // Image is wider than canvas
+        drawHeight = canvasHeight;
+        drawWidth = img.width * (canvasHeight / img.height);
+        offsetX = (canvasWidth - drawWidth) / 2;
+        offsetY = 0;
+    } else {
+        // Image is taller than canvas
+        drawWidth = canvasWidth;
+        drawHeight = img.height * (canvasWidth / img.width);
+        offsetX = 0;
+        offsetY = (canvasHeight - drawHeight) / 2;
+    }
+    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
+}
+
 function compressImage(dataURI) {
     console.log(dataURItoBlob(dataURI))
     const img = new Image()
@@ -46,21 +66,8 @@ function compressImage(dataURI) {
         canvas.style.background = "#08080B";
         canvas.width  = 180; 
         canvas.height = 240; 
-        const ratio = img.height / img.width
-        let xOff = 0
-        let yOff = 0
-        if (ratio > 1){
-            let h = Math.min(240, img.height)
-            let w = img.width*h/img.height
-            img.height = h
-            img.width = w
-        } else {
-            let w = Math.min(180, img.width)
-            let h = img.height*w/img.width
-            img.height = h
-            img.width = w
-        }
         let ctx = canvas.getContext("2d")
+        drawImageCover(ctx, img, 180, 240)
         ctx.drawImage(img,xOff,yOff)
         const newURI = canvas.toDataURL("image/jpeg", "0.5")
         console.log(canvas)
