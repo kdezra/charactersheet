@@ -17,15 +17,11 @@ const starLocs = {
 }
 
 function findParent(e, c, attr = "class") {
-    if ((e.getAttribute(attr)||" ").split(" ").includes(c)) {
-        return e;
-    }
+    if ((e.getAttribute(attr)||" ").split(" ").includes(c)) return e;
     let el = e;
     while( el.parentElement != null){
         el = el.parentElement;
-        if ((el.getAttribute(attr)||" ").split(" ").includes(c)) {
-            return el;
-        }
+        if ((el.getAttribute(attr)||" ").split(" ").includes(c)) return el;
     }
     return;
 }
@@ -85,12 +81,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'loc': 0
         }
         el.addEventListener("mousemove", (e) => {
-            const elClass = findParent(e.target, "slider").id
+            const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
+            elem.perc = 100*(elem.loc / bounds.width);
         });
         el.addEventListener("click", (e) => {
-            console.log(e)
+            const elId = findParent(e.target, "slider").id
+            const elem = inputData[elId]
+            console.log(elem.perc)
         });
     })
 
