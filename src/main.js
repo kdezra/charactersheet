@@ -56,6 +56,18 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 
+    // Text Fill
+    document.querySelectorAll(".text-fill").forEach((el) => {
+        inputData[el.id] = {
+            'type':'text',
+            'element':el,
+            'val': 0
+        }
+        el.addEventListener("change", (e) => {
+            console.log(e)
+        })
+    });
+
 
     // Radio Selections
     document.querySelectorAll(".rating").forEach((el) => {
@@ -95,12 +107,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
         
         el.addEventListener("click", (e) => {
-            console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
-            elem.perc = Math.max(0,Math.min((loc / elem.bounds.width),1));
-            elem.mark.style.width = `${Math.round(100*elem.perc)}%`;
+            const perc = loc / elem.bounds.width
+            console.log(e, elem, perc, loc)
+            elem.perc = 100*Math.max(0, Math.min(1, perc));
+            elem.mark.style.width = `${Math.round(elem.perc)}%`;
             console.log(elem.perc)
         });
     })
