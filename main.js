@@ -74,7 +74,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elId = e.target.id||e.target.parentElement.id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
-            print(e.target)
+        });
+        el.addEventListener("click", (e) => {
+            console.log(e)
         });
     })
 
