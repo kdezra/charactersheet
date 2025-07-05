@@ -1,9 +1,8 @@
 const inputData = {}
-const storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
 const savedData = {}
 const keyMap = {}
 
-let storageKeys = ["CHARTAB_store"]
+let storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
 let storageKey = "CHARTAB_store"
 let imgStorage = null;
 
@@ -44,6 +43,9 @@ function storeStorage(skey=null) {
 function getStorage(skey=null) {
     storeKey = skey||storageKey
     const tempStorage = {'i':null,'s':{'radio':{}, 'slide':{}, 'text':{}, 'check':{}}}
+    if (!(storeKey in window.localStorage)) {
+        return tempStorage
+    }
     tempStorage.i = window.localStorage.getItem(`${storeKey}_img`)
     const storeString = window.localStorage.getItem(storeKey)
     const storeJSON = JSON.parse(storeString)
@@ -73,6 +75,7 @@ function readStorage() {
 function resetAll() {
     const confirmSave = confirm("Do you want to save your work before resetting?");
     if (confirmSave) { saveBtn.click() }
+    storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
     resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
     for (key in inputData) {
         let elType = inputData[key].type;
@@ -135,6 +138,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     storage = tempStorage.s
     imgStorage = tempStorage.i
     readStorage()
+    populateSaveDropdown()
 
     console.log(imgStorage)
     if (imgStorage) {

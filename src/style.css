@@ -479,7 +479,7 @@ input {
         box-sizing: border-box;
         background-color: var(--accent);
         margin: auto;
-        width: 550px;
+        width: 100%;
         font-weight: 400;
     }
     .controls,
