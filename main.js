@@ -16,12 +16,16 @@ const starLocs = {
     'five': 110
 }
 
-function findParent(e, c, attr = "class") => {
-    if ((e.getAttribute(attr)||" ").split(" ").includes(c)) {return e;}
+function findParent(e, c, attr = "class") {
+    if ((e.getAttribute(attr)||" ").split(" ").includes(c)) {
+        return e;
+    }
     let el = e;
     while( el.parentElement != null){
         el = el.parentElement;
-        if ((el.getAttribute(attr)||" ").split(" ").includes(c)) {return el;}
+        if ((el.getAttribute(attr)||" ").split(" ").includes(c)) {
+            return el;
+        }
     }
     return;
 }
