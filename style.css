@@ -44,7 +44,7 @@ body {
 
 
 .sheet-cont,
-.export {
+.controls {
     box-sizing: border-box;
     background-color: var(--dark);
     margin: auto;
@@ -61,7 +61,7 @@ body {
     line-height: 200%;
 }
 
-.export {
+.controls {
     display: flex;
     justify-content: right;
     padding: 10px 20px;
@@ -122,11 +122,15 @@ input {
     width: 180px;
 }
 
-.export input {
+.controls input {
     background-color: var(--accent);
     color: var(--dark);
     margin: 0 5px;
     font-size: .8em;
+}
+
+.controls input:disabled {
+    opacity: 0.9;
 }
 
 ::placeholder {

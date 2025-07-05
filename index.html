@@ -8,10 +8,12 @@
 </head>
 
 <body>
-    <p id="credits">Template adapted from cyparrisart</p>
-    <p id="credits">Code adapted from <a href="https://codepen.io/piee" target="_blank">Pie</a> on <a
-            href="https://codepen.io/piee/pen/LYaLqQQ" target="_blank">Codepen</a></p>
-    <div class="export">
+    <div id="credits">
+        <p>Template adapted from cyparrisart</p>
+        <p>Code adapted from <a href="https://codepen.io/piee" target="_blank">Pie</a> on <a
+                href="https://codepen.io/piee/pen/LYaLqQQ" target="_blank">Codepen</a></p>
+    </div>
+    <div class="controls">
         <input id="print" type="button" value="Export"><input id="share" type="button" disabled=""
             value="Get Share Link">
         <input id="share-link" type="text" style="display: none;" readonly="">
@@ -41,28 +43,35 @@
         <div class="sheet-main">
             <div class="left">
                 <label><b>HEIGHT</b><input id="in-height" type="text" /></label>
-                <span class="rating" id="strength-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="strength-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>STRENGTH</b></span>
 
-                <span class="rating" id="dexterity-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="dexterity-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>DEXTERITY</b></span>
 
-                <span class="rating" id="health-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="health-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>HEALTH</b></span>
             </div>
 
             <div class="right">
 
-                <span class="rating" id="energy-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="energy-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>ENERGY</b></span>
 
-                <span class="rating" id="beauty-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="beauty-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>BEAUTY</b></span>
 
-                <span class="rating" id="style-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="style-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>STYLE</b></span>
 
-                <span class="rating" id="hygiene-body"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="hygiene-body"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>HYGIENE</b></span>
 
             </div>
@@ -72,17 +81,23 @@
         <h2>skills</h2>
         <div class="sheet-main three-row">
             <div class="left">
-                <span class="rating" id="perception-skill"><span></span> <span></span> <span></span> <b>perception</b></span>
+                <span class="rating" id="perception-skill"><span></span> <span></span> <span></span>
+                    <b>perception</b></span>
 
-                <span class="rating" id="communication-skill"><span></span> <span></span> <span></span> <b>communication</b></span>
+                <span class="rating" id="communication-skill"><span></span> <span></span> <span></span>
+                    <b>communication</b></span>
 
-                <span class="rating" id="persuasion-skill"><span></span> <span></span> <span></span> <b>persuasion</b></span>
+                <span class="rating" id="persuasion-skill"><span></span> <span></span> <span></span>
+                    <b>persuasion</b></span>
 
-                <span class="rating" id="mediation-skill"><span></span> <span></span> <span></span> <b>mediation</b></span>
+                <span class="rating" id="mediation-skill"><span></span> <span></span> <span></span>
+                    <b>mediation</b></span>
 
-                <span class="rating" id="literacy-skill"><span></span> <span></span> <span></span> <b>literacy</b></span>
+                <span class="rating" id="literacy-skill"><span></span> <span></span> <span></span>
+                    <b>literacy</b></span>
 
-                <span class="rating" id="creativity-skill"><span></span> <span></span> <span></span> <b>creativity</b></span>
+                <span class="rating" id="creativity-skill"><span></span> <span></span> <span></span>
+                    <b>creativity</b></span>
 
                 <span class="rating" id="cooking-skill"><span></span> <span></span> <span></span> <b>cooking</b></span>
 
@@ -94,20 +109,25 @@
 
                 <span class="rating" id="combat-label"><span></span> <span></span> <span></span> <b>combat</b></span>
 
-                <span class="rating" id="survival-label"><span></span> <span></span> <span></span> <b>survival</b></span>
+                <span class="rating" id="survival-label"><span></span> <span></span> <span></span>
+                    <b>survival</b></span>
 
                 <span class="rating" id="stealth-label"><span></span> <span></span> <span></span> <b>stealth</b></span>
 
-                <span class="rating" id="street-label"><span></span> <span></span> <span></span> <b>street smarts</b></span>
+                <span class="rating" id="street-label"><span></span> <span></span> <span></span> <b>street
+                        smarts</b></span>
 
-                <span class="rating" id="seduction-label"><span></span> <span></span> <span></span> <b>seduction</b></span>
+                <span class="rating" id="seduction-label"><span></span> <span></span> <span></span>
+                    <b>seduction</b></span>
 
                 <span class="rating" id="luck-label"><span></span> <span></span> <span></span> <b>luck</b></span>
 
-                <span class="rating" id="handling-label"><span></span> <span></span> <span></span> <b style="font-size:0.85em;">handling
+                <span class="rating" id="handling-label"><span></span> <span></span> <span></span> <b
+                        style="font-size:0.85em;">handling
                         animals</b></span>
 
-                <span class="rating" id="pacifying-label"><span></span> <span></span> <span></span> <b style="font-size:0.83em;">pacifying
+                <span class="rating" id="pacifying-label"><span></span> <span></span> <span></span> <b
+                        style="font-size:0.83em;">pacifying
                         children</b></span>
 
             </div>
@@ -118,31 +138,39 @@
         <h2>mind</h2>
         <div class="sheet-main">
             <div class="left">
-                <span class="rating" id="intelligence-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="intelligence-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>INTELLIGENCE</b></span>
 
-                <span class="rating" id="happiness-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="happiness-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>happiness</b></span>
 
-                <span class="rating" id="spirituality-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="spirituality-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>spirituality</b></span>
 
-                <span class="rating" id="confidence-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="confidence-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>confidence</b></span>
             </div>
 
             <div class="right">
 
-                <span class="rating" id="humor-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="humor-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>humor</b></span>
 
-                <span class="rating" id="anxiety-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="anxiety-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>anxiety</b></span>
 
-                <span class="rating" id="patience-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="patience-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>patience</b></span>
 
-                <span class="rating" id="passion-mind"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="passion-mind"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>passion</b></span>
 
             </div>
@@ -337,9 +365,11 @@
         <h2>beliefs</h2>
         <div class="sheet-main three-row">
             <div class="left">
-                <span class="rating" id="higher-belief"><span></span> <span></span> <span></span> <b>higher power</b></span>
+                <span class="rating" id="higher-belief"><span></span> <span></span> <span></span> <b>higher
+                        power</b></span>
 
-                <span class="rating" id="fate-belief"><span></span> <span></span> <span></span> <b>fate/destiny</b></span>
+                <span class="rating" id="fate-belief"><span></span> <span></span> <span></span>
+                    <b>fate/destiny</b></span>
 
                 <span class="rating" id="magic-belief"><span></span> <span></span> <span></span> <b>magic</b></span>
 
@@ -347,9 +377,11 @@
 
             <div class="right">
 
-                <span class="rating" id="soulmates-belief"><span></span> <span></span> <span></span> <b>soulmates</b></span>
+                <span class="rating" id="soulmates-belief"><span></span> <span></span> <span></span>
+                    <b>soulmates</b></span>
 
-                <span class="rating" id="good-belief"><span></span> <span></span> <span></span> <b>good & evil</b></span>
+                <span class="rating" id="good-belief"><span></span> <span></span> <span></span> <b>good &
+                        evil</b></span>
 
                 <span class="rating" id="luck-belief"><span></span> <span></span> <span></span> <b>luck</b></span>
 
@@ -360,43 +392,55 @@
         <h2>priorities</h2>
         <div class="sheet-main">
             <div class="left">
-                <span class="rating" id="family-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="family-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>FAMILY</b></span>
 
-                <span class="rating" id="friends-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="friends-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>FRIENDS</b></span>
 
-                <span class="rating" id="love-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="love-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>LOVE</b></span>
 
-                <span class="rating" id="home-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="home-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>HOME</b></span>
 
-                <span class="rating" id="health-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="health-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>HEALTH</b></span>
 
-                <span class="rating" id="praise-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="praise-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>PRAISE</b></span>
             </div>
 
             <div class="right">
 
-                <span class="rating" id="justice-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="justice-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>JUSTICE</b></span>
 
-                <span class="rating" id="truth-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="truth-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>TRUTH</b></span>
 
-                <span class="rating" id="power-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="power-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>POWER</b></span>
 
-                <span class="rating" id="fame-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="fame-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>FAME</b></span>
 
-                <span class="rating" id="wealth-priority"><span></span> <span></span> <span></span> <span></span> <span></span>
+                <span class="rating" id="wealth-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span>
                     <b>WEALTH</b></span>
 
-                <span class="rating" id="others-priority"><span></span> <span></span> <span></span> <span></span> <span></span> <b style="font-size:0.8em;">OTHERS' OPINIONS</b></span>
+                <span class="rating" id="others-priority"><span></span> <span></span> <span></span> <span></span>
+                    <span></span> <b style="font-size:0.8em;">OTHERS' OPINIONS</b></span>
 
             </div>
 
