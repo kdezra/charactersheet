@@ -156,7 +156,7 @@ input {
     width: 32px;
     display: block;
     height: 32px;
-    background-image: url("camera.png");
+    background-image: url("assets/camera.png");
     z-index: 11;
     border-radius: 0 0 10px 0;
     background-color: var(--dark-55);
