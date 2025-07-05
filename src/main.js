@@ -1,5 +1,5 @@
 const inputData = {}
-const storage = {'img':{}, 'radio':{}, 'slider':{}, 'text':{}, 'check':{}}
+const storage = {'img':{}, 'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
 
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
