@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
             elem.perc = Math.max(0,Math.min((elem.loc / elem.bounds.width),1));
-            elem.slidermark.style.width = `${round(100*elem.perc)}%`;
+            elem.mark.style.width = `${round(100*elem.perc)}%`;
             console.log(elem.perc)
         });
     })
@@ -102,7 +102,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         el.addEventListener("click", (e) => {
             const elId = e.target.id
             const elem = inputData[elId]
-            if (e.shiftKey) {
+            if (e.ctrlKey && e.shiftKey) {
+                elem.checked = false
+                elem.checkedish = false
+                elem.checkedidk = false
+                elem.element.classList = 'box';
+            } else if (e.shiftKey) {
                 elem.checkedish = !elem.checkedish
                 elem.checked = false
                 elem.checkedidk = false
@@ -112,7 +117,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 elem.checkedish = false
                 elem.checkedidk = !elem.checkedidk
                 elem.element.classList = elem.checkedidk?'box checkedidk':'box';
-                
             } else {
                 elem.checked = !elem.checked
                 elem.checkedish = false
