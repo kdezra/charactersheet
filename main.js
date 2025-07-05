@@ -108,7 +108,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 elem.checkedidk = false
                 elem.element.classList = elem.checkedish?'box checkedish':'box';
             } else if (e.ctrlKey) {
-                elem.checkedidk = !elem.checkedidk
                 elem.checked = false
                 elem.checkedish = false
                 elem.checkedidk = !elem.checkedidk
