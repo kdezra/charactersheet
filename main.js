@@ -49,15 +49,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'stars': 0,
             'loc': 0
         }
-        el.addEventListener("mousemove", (e) => {
-            const elId = findParent(e.target, "rating").id
-            const elem = inputData[elId]
-            elem.loc = e.x - elem.bounds.x;
-        });
+        // el.addEventListener("mousemove", (e) => {
+        //     const elId = findParent(e.target, "rating").id
+        //     const elem = inputData[elId]
+        //     elem.loc = 
+        // });
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
-            const eloc = elem.loc
+            const eloc = e.x - elem.bounds.x;
             console.log(elId, eloc, elem);
 
             for (star in starLocs) {
@@ -80,15 +80,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'perc': 0,
             'loc': 0
         }
-        el.addEventListener("mousemove", (e) => {
+        // el.addEventListener("mousemove", (e) => {
+        //     const elId = findParent(e.target, "slider").id
+        //     const elem = inputData[elId]
+        // });
+        el.addEventListener("click", (e) => {
+            console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
             elem.perc = 100*(elem.loc / bounds.width);
-        });
-        el.addEventListener("click", (e) => {
-            const elId = findParent(e.target, "slider").id
-            const elem = inputData[elId]
             console.log(elem.perc)
         });
     })
@@ -99,11 +100,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'type': 'check',
             'element':el,
             'checked': false
+            'checkedish': false
         }
         el.addEventListener("click", (e) => {
             const elId = e.target.id
             const elem = inputData[elId]
+            if (e.shiftKey)
             elem.checked = !elem.checked
+            elem.checkedish = false;
             elem.element.classList = elem.checked?'box checked':'box';
         });
     })
