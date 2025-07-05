@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elId = e.target.id
             const elem = inputData[elId]
             let i = 0
-            if !(e.ctrlKey && e.shiftKey)||!elem.data{
+            if (!(e.ctrlKey && e.shiftKey)||!elem.data){
                 i = e.shiftKey?2:(e.ctrlKey?3:1)
             }
             elem.element.classList = `box ${chk[i]}`.trim()
