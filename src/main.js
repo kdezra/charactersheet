@@ -27,10 +27,17 @@ function storeStorage() {
     window.localStorage.setItem(storageKey, storeString)
 }
 
+function getStorage() {
+    imgStorage = window.localStorage.getItem(`${storageKey}_img`)
+    const storeString = window.localStorage.getItem(storageKey)
+    storage = JSON.parse(storeString)
+}
+
 function setStorage() {
     for (key in inputData) {
         storage[inputData[key].type][key] = inputData[key].data
     }
+    storeStorage()
     console.log(storage)
 }
 function readStorage() {
@@ -77,6 +84,9 @@ function resetAll() {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    getStorage()
+    readStorage()
+
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         let fileReader = new FileReader();
@@ -200,5 +210,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             inputData[el.id].bounds = el.getBoundingClientRect()
         })
     });
+
+    setStorage()
 })
 
