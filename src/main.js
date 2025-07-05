@@ -41,9 +41,6 @@ function compressImage(dataURI) {
     const img = new Image()
     img.src = dataURI
     img.onload = function () {
-        oh   nh
-        -- = --
-        ow   x
         const canvas = document.createElement('canvas')
         canvas.style.background = "#08080B";
         canvas.width  = 180; 
