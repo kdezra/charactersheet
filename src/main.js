@@ -48,6 +48,8 @@ function compressImage(dataURI) {
     canvas.height = height;  // Set the height of the Canvas
     canvas.getContext("2d").drawImage(img,0,0,width,height)
     const newURI = canvas.toDataURL("image/jpeg", "0.5")
+    console.log(canvas)
+    console.log(img)
     console.log(dataURItoBlob(newURI))
     return newURI
 }
