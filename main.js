@@ -3,7 +3,7 @@ const image = document.getElementById('portrait');
 let imageData = null;
 
 inputData = {}
-const starLocs = {
+const nLocs = {
     'one-half': 13,
     'one': 20,
     'two-half': 33,
@@ -46,25 +46,20 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'type':'radio',
             'element':el,
             'bounds': el.getBoundingClientRect(),
-            'stars': 0,
+            'n': 0,
             'loc': 0
         }
-        // el.addEventListener("mousemove", (e) => {
-        //     const elId = findParent(e.target, "rating").id
-        //     const elem = inputData[elId]
-        //     elem.loc = 
-        // });
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
             const eloc = e.x - elem.bounds.x;
             console.log(elId, eloc, elem);
 
-            for (star in starLocs) {
-                if (eloc < starLocs[star]) {
-                    console.log(star);
-                    elem.element.classList = `rating ${star}`
-                    elem.stars = star
+            for (n in nLocs) {
+                if (eloc < nLocs[n]) {
+                    console.log(n);
+                    elem.element.classList = `rating ${n}`
+                    elem.n = n
                     break;
                 }
             }
@@ -80,14 +75,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'perc': 0,
             'loc': 0
         }
-        // el.addEventListener("mousemove", (e) => {
-        //     const elId = findParent(e.target, "slider").id
-        //     const elem = inputData[elId]
-        // });
+        
         el.addEventListener("click", (e) => {
             console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
+            console.log(elem)
             elem.loc = e.x - elem.bounds.x;
             elem.perc = 100*(elem.loc / bounds.width);
             console.log(elem.perc)
