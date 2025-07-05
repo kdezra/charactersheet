@@ -184,7 +184,6 @@ input {
 .img-control {
     position: relative;
     display: block;
-    top: calc(100% - 32px);
     width: 32px;
     height: 32px;
     z-index: 11;
@@ -202,11 +201,13 @@ input {
 
 #portrait-label {
     left: calc(100% - 32px);
+    top: calc(100% - 32px);
     background-image: url("assets/camera.png");
     border-radius: 0 0 10px 0;
 }
 #portrait-clear {
     left: calc(100% - 64px);
+    top: calc(100% - 64px);
     background-image: url("assets/undo.png");
     border-radius: 0;
 }
