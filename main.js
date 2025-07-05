@@ -1,5 +1,6 @@
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
+let imageData = null;
 
 ratings = {}
 starLocs = {
@@ -16,6 +17,7 @@ starLocs = {
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
+    // Image Upload
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
 
@@ -23,12 +25,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.readAsDataURL(file);
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
+            imageData = fileReader.result;
         }
     });
 
 
+    // Check Boxes
     document.querySelectorAll(".rating").forEach((el) => {
         ratings[el.id] = {
+            'type':'radio',
             'element':el,
             'bounds': el.getBoundingClientRect(),
             'stars': 0,
@@ -55,5 +60,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
             }
         })
     });
+
+    // Sliders
+    document.querySelectorAll(".sliderline").forEach((el) => {
+        ratings[el.id] = {
+            'type': 'slide',
+            'element':el,
+            'bounds': el.getBoundingClientRect(),
+            'perc': 0,
+            'loc': 0
+        }
+        el.addEventListener("mousemove", (e) => {
+            const elId = e.target.id||e.target.parentElement.id
+            const elem = ratings[elId]
+            elem.loc = e.x - elem.bounds.x;
+            print(e.target)
+        });
+    })
 })
 
