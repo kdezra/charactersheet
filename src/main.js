@@ -70,7 +70,7 @@ function readStorage() {
     console.log(inputData)
 }
 
-function resetAll() 
+function resetAll() {
     const confirmSave = confirm("Do you want to save your work before resetting?");
     if (confirmSave) { saveBtn.click() }
     resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
