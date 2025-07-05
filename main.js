@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         inputData[el.id] = {
             'type': 'slide',
             'element':el,
-            'bounds': el.getBoundingClientRect().width,
+            'bounds': el.getBoundingClientRect(),
             'perc': 0,
             'loc': 0
         }
