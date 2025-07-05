@@ -84,7 +84,7 @@ body {
 .head-icon {
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
 }
 
