@@ -25,55 +25,6 @@ function findParent(e, c, attr = "class") {
     return;
 }
 
-function dataURItoBlob(dataURI) {
-    const byteString = atob(dataURI.split(',')[1]);
-    const mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-    const ab = new ArrayBuffer(byteString.length);
-    let ia = new Uint8Array(ab);
-    for (let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
-    return new Blob([ab], {type: mimeString});
-}
-
-function drawImageCover(ctx, img, canvasWidth, canvasHeight) {
-    const imgRatio = img.width / img.height;
-    const canvasRatio = canvasWidth / canvasHeight;
-    let drawWidth, drawHeight, offsetX, offsetY;
-    if (imgRatio > canvasRatio) {
-        // Image is wider than canvas
-        drawHeight = canvasHeight;
-        drawWidth = img.width * (canvasHeight / img.height);
-        offsetX = (canvasWidth - drawWidth) / 2;
-        offsetY = 0;
-    } else {
-        // Image is taller than canvas
-        drawWidth = canvasWidth;
-        drawHeight = img.height * (canvasWidth / img.width);
-        offsetX = 0;
-        offsetY = (canvasHeight - drawHeight) / 2;
-    }
-    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-}
-
-function compressImage(dataURI) {
-    console.log(dataURItoBlob(dataURI))
-    const img = new Image()
-    img.src = dataURI
-    img.onload = function () {
-        // const canvas = document.createElement('canvas')
-        const canvas = document.getElementById('canvas')
-        const imgCompressed = document.getElementById('jpeg')
-        canvas.style.background = "#08080B";
-        canvas.width  = 180; 
-        canvas.height = 240; 
-        let ctx = canvas.getContext("2d")
-        drawImageCover(ctx, img, 180, 240)
-        const newURI = canvas.toDataURL("image/jpeg", "0.5")
-        imgCompressed.src = newURI
-        console.log(dataURItoBlob(newURI))
-    }
-}
 
 document.addEventListener("DOMContentLoaded", (event) => {
     // Image Upload
@@ -85,7 +36,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
             inputData.imageData = fileReader.result;
-            console.log(compressImage(inputData.imageData))
         }
     });
 
