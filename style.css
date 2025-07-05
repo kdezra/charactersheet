@@ -260,7 +260,7 @@ input {
 .sheet-main span.rating.one>span:first-of-type,
 .sheet-main span.rating.two-half>span:first-of-type,
 .sheet-main span.rating.two>span:nth-of-type(-n + 2),
-.sheet-main span.rating.three-half>span:nth-of-type(-n + 4),
+.sheet-main span.rating.three-half>span:nth-of-type(-n + 2),
 .sheet-main span.rating.three>span:nth-of-type(-n + 3),
 .sheet-main span.rating.four-half>span:nth-of-type(-n + 3),
 .sheet-main span.rating.four>span:nth-of-type(-n + 4),
@@ -273,7 +273,7 @@ input {
 .sheet-main span.rating.one-half>span:first-of-type,
 .sheet-main span.rating.two-half>span:nth-of-type(2),
 .sheet-main span.rating.three-half>span:nth-of-type(3),
-.sheet-main span.rating.four-half>span:nth-of-type(3),
+.sheet-main span.rating.four-half>span:nth-of-type(4),
 .sheet-main span.rating.five-half>span:nth-of-type(5) {
     background: linear-gradient(to right,  var(--accent) 50%, var(--divider) 0%); 
 }
