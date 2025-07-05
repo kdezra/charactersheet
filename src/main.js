@@ -90,6 +90,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
     getStorage()
     readStorage()
 
+    console.log(imgStorage)
+    if (imgStorage) {
+        image.setAttribute('style', `background-image: url('${imgStorage}')`);
+    }
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         let fileReader = new FileReader();
@@ -97,9 +101,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
             imgStorage = fileReader.result;
-        }
-        if (imgStorage) {
-            image.setAttribute('style', `background-image: url('${imgStorage}')`);
         }
     });
 
