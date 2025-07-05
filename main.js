@@ -99,16 +99,31 @@ document.addEventListener("DOMContentLoaded", (event) => {
         inputData[el.id] = {
             'type': 'check',
             'element':el,
-            'checked': false
-            'checkedish': false
+            'checked': false,
+            'checkedish': false,
+            'checkedidk': false
         }
         el.addEventListener("click", (e) => {
             const elId = e.target.id
             const elem = inputData[elId]
-            if (e.shiftKey)
-            elem.checked = !elem.checked
-            elem.checkedish = false;
-            elem.element.classList = elem.checked?'box checked':'box';
+            if (e.shiftKey) {
+                elem.checkedish = !elem.checkedish
+                elem.checked = false
+                elem.checkedidk = false
+                elem.element.classList = elem.checked?'box checkedish':'box';
+            } else if (e.ctrlKey) {
+                elem.checkedidk = !elem.checkedidk
+                elem.checked = false
+                elem.checkedish = false
+                elem.checkedidk = !elem.checkedidk
+                elem.element.classList = elem.checked?'box checkedidk':'box';
+                
+            } else {
+                elem.checked = !elem.checked
+                elem.checkedish = false
+                elem.checkedidk = false
+                elem.element.classList = elem.checked?'box checked':'box';
+            }
         });
     })
 })

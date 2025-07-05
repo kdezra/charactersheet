@@ -351,7 +351,7 @@ input {
     width: 40%;
 }
 
-.sheet-main .checkbox .box {
+.sheet-main .checkbox .box  {
     display: flex;
     align-items: center;
     gap: 0.5em;
@@ -373,6 +373,26 @@ input {
 
 .sheet-main .checkbox .box.checked::before {
     content: "✘";
+    color: var(--accent);
+    font-family: monospace;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.sheet-main .checkbox .box.checkedidk::before {
+    content: "?";
+    color: var(--accent);
+    font-family: monospace;
+    font-weight: bold;
+    line-height: 20px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.sheet-main .checkbox .box.checkedish::before {
+    content: "/";
     color: var(--accent);
     font-family: monospace;
     font-weight: bold;
