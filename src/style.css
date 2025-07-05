@@ -44,7 +44,8 @@ body {
 
 
 .sheet-cont,
-.controls {
+.controls,
+.head {
     box-sizing: border-box;
     background-color: var(--dark);
     margin: auto;
@@ -63,9 +64,38 @@ body {
 
 .controls {
     display: flex;
-    justify-content: right;
+    justify-content: space-between;
     padding: 10px 20px;
     flex-direction: row;
+}
+
+.export,
+.controls > div {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: fit-content;
+}
+
+.head {
+    text-align: center;
+}
+
+.head-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+#page-icon {
+    width: 48px;
+    height: 48px;
+    margin-left: 10px;
+}
+
+.head-credits {
+    color: var(--light-55);
+    font-size: 0.9em;
 }
 
 .sheet-icon {
@@ -115,21 +145,21 @@ input {
     margin-bottom: 2px;
 }
 
-#credits input {
+.credits input {
     font-style: italic;
     font-size: .75em;
     text-align: center;
     width: 180px;
 }
 
-.controls input {
+.export input {
     background-color: var(--accent);
     color: var(--dark);
     margin: 0 5px;
     font-size: .8em;
 }
 
-.controls input:disabled {
+.export input:disabled {
     opacity: 0.9;
 }
 

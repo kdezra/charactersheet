@@ -1,8 +1,7 @@
+inputData = {'imageData':null}
+
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
-let imageData = null;
-
-inputData = {}
 const nLocs = {
     'one-half': 13,
     'one': 20,
@@ -35,7 +34,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.readAsDataURL(file);
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
-            imageData = fileReader.result;
+            inputData.imageData = fileReader.result;
         }
     });
 
