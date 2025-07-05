@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz@8..60&display=swap');
-
 :root {
     --dark: #08080B;
     --dark-25: rgba(0, 0, 0, .25);
@@ -41,8 +39,6 @@ body {
     color: var(--light);
 }
 
-
-
 .sheet-cont,
 .controls,
 .head {
@@ -52,7 +48,6 @@ body {
     width: 550px;
     font-weight: 400;
 }
-
 
 .sheet-cont {
     min-height: 250px;
@@ -471,4 +466,23 @@ input {
 
 .sheet-main .right.flex b {
     font-size: 0.85em;
+}
+
+@media print {
+    .head {
+        display: none;
+    }
+    .sheet-cont,
+    .controls {
+        box-sizing: border-box;
+        /* background-color: var(--dark); */
+        margin: auto;
+        width: 550px;
+        font-weight: 400;
+    }
+    .btns,
+    ::placeholder,
+    ::-ms-input-placeholder {
+        display: none;
+    }
 }
