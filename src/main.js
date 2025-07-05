@@ -1,9 +1,13 @@
-inputData = {'imageData':null}
+const inputData = {'imageData':null}
+const storage = {}
 
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
+const clearBtn = document.getElementById('portrait-clear');
+const resetBtn = document.getElementById('reset');
+const printBtn = document.getElementById('portrait');
 const nLocs = {
-    '': 5,
+    'zero': 5,
     'one-half': 13,
     'one': 20,
     'two-half': 33,
@@ -26,9 +30,7 @@ function findParent(e, c, attr = "class") {
     return;
 }
 
-
 document.addEventListener("DOMContentLoaded", (event) => {
-    // Image Upload
     fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
 
@@ -40,8 +42,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 
-    document.addEventListener("resize", (e) => {
-        console.log("RESIZED", e)
+    clearBtn.addEventListener('click', (e) => {
+        inputData.imageData = null
+        image.setAttribute('style', '');
     });
 
     // Text Fill
@@ -63,20 +66,23 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'type':'radio',
             'element':el,
             'bounds': el.getBoundingClientRect(),
-            'n': 0
+            'n': 'zero'
         }
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
-            console.log(elId, loc, elem);
-
-            for (n in nLocs) {
-                if (loc < nLocs[n]) {
-                    console.log(n);
-                    elem.element.classList = `rating ${n}`
-                    elem.n = n
-                    break;
+            if (e.shiftKey) {
+                elem.element.classList = 'rating zero'
+                elem.n = 'zero'
+            } else{
+                for (n in nLocs) {
+                    if (loc < nLocs[n]) {
+                        console.log(n);
+                        elem.element.classList = `rating ${n}`
+                        elem.n = n
+                        break;
+                    }
                 }
             }
         })
@@ -93,7 +99,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'bounds': sliderline.getBoundingClientRect(),
             'perc': 0
         }
-        
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
@@ -105,6 +110,14 @@ document.addEventListener("DOMContentLoaded", (event) => {
             console.log(elem.perc)
         });
     })
+
+
+    window.addEventListener("resize", (e) => {
+        document.querySelectorAll(".slider").forEach((el) => {
+            const sliderline = el.children[1]
+            inputData[el.id].bounds = sliderline.getBoundingClientRect()
+        }
+    });
 
 
     document.querySelectorAll(".box").forEach((el) => {
