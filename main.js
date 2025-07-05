@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
     })
 
 
-    document.querySelectorAll(".sliderline").forEach((el) => {
+    document.querySelectorAll(".box").forEach((el) => {
         inputData[el.id] = {
             'type': 'check',
             'element':el,
