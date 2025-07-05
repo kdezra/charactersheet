@@ -102,13 +102,13 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 elem.checkedish = !elem.checkedish
                 elem.checked = false
                 elem.checkedidk = false
-                elem.element.classList = elem.checked?'box checkedish':'box';
+                elem.element.classList = elem.checkedish?'box checkedish':'box';
             } else if (e.ctrlKey) {
                 elem.checkedidk = !elem.checkedidk
                 elem.checked = false
                 elem.checkedish = false
                 elem.checkedidk = !elem.checkedidk
-                elem.element.classList = elem.checked?'box checkedidk':'box';
+                elem.element.classList = elem.checkedidk?'box checkedidk':'box';
                 
             } else {
                 elem.checked = !elem.checked
