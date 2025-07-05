@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
             const perc = 100*Math.max(0, Math.min(1, loc / elem.bounds.width));
-            elem.data = `${Math.round(elem.perc)}%`;
+            elem.data = `${Math.round(perc)}%`;
             console.log(elem.data)
             elem.mark.style.width = elem.data;
             setStorage()
