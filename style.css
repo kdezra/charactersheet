@@ -262,7 +262,7 @@ input {
 .sheet-main span.rating.two>span:nth-of-type(-n + 2),
 .sheet-main span.rating.three-half>span:nth-of-type(-n + 4),
 .sheet-main span.rating.three>span:nth-of-type(-n + 3),
-.sheet-main span.rating.four-half>span:nth-of-type(-n + 4),
+.sheet-main span.rating.four-half>span:nth-of-type(-n + 3),
 .sheet-main span.rating.four>span:nth-of-type(-n + 4),
 .sheet-main span.rating.five-half>span:nth-of-type(-n + 4),
 .sheet-main span.rating.five>span:nth-of-type(-n + 5) {
