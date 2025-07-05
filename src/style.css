@@ -96,7 +96,8 @@ body {
 
 .head-credits {
     color: var(--light-55);
-    font-size: 0.9em;
+    font-size: 0.75em;
+    line-height: .5em;
 }
 
 .sheet-icon {
