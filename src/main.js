@@ -63,15 +63,14 @@ function compressImage(dataURI) {
     img.onload = function () {
         // const canvas = document.createElement('canvas')
         const canvas = document.getElementById('canvas')
+        const imgCompressed = document.getElementById('jpeg')
         canvas.style.background = "#08080B";
         canvas.width  = 180; 
         canvas.height = 240; 
         let ctx = canvas.getContext("2d")
         drawImageCover(ctx, img, 180, 240)
-        ctx.drawImage(img,xOff,yOff)
         const newURI = canvas.toDataURL("image/jpeg", "0.5")
-        console.log(canvas)
-        console.log(img)
+        imgCompressed.src = newURI
         console.log(dataURItoBlob(newURI))
     }
 }
