@@ -30,7 +30,10 @@ function storeStorage() {
 function getStorage() {
     imgStorage = window.localStorage.getItem(`${storageKey}_img`)
     const storeString = window.localStorage.getItem(storageKey)
-    storage = JSON.parse(storeString)
+    const storeJSON = JSON.parse(storeString)
+    for (key in storeJSON) {
+        storage[key] = storeJSON[key]
+    }
 }
 
 function setStorage() {
