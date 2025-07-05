@@ -1,15 +1,28 @@
 const inputData = {}
 const storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
+const savedData = {}
+const keyMap = {}
+
+let storageKeys = ["CHARTAB_store"]
+let storageKey = "CHARTAB_store"
 let imgStorage = null;
-const storageKey = "CHARTAB_store"
 
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 const clearBtn = document.getElementById('portrait-clear');
-const resetBtn = document.getElementById('reset');
-const printBtn = document.getElementById('print');
+const resetBtn = document.getElementById('reset-btn');
+const printBtn = document.getElementById('print-btn');
+const saveBtn = document.getElementById('save-btn');
+const select = document.getElementById('save-select');
 const nLocs = { 'zero': 5, 'one-half': 13, 'one': 20, 'two-half': 33, 'two': 40,
                 'three-half': 53, 'three': 60, 'four-half': 73, 'four': 80, 'five-half': 93, 'five': 110 }
+
+function shortUUID() {
+  return (Date.now().toString(36) + Math.random().toString(36).substring(2, 6));
+}
+function sanitizeName(name) {
+  return name.replace(/[^a-z0-9]/gi, '');
+}
 
 function findParent(e, c, attr = "class") {
     if ((e.getAttribute(attr)||" ").split(" ").includes(c)) return e;
@@ -21,19 +34,23 @@ function findParent(e, c, attr = "class") {
     return;
 }
 
-function storeStorage() {
+function storeStorage(skey=null) {
+    storeKey = skey||storageKey
     const storeString = JSON.stringify(storage)
-    window.localStorage.setItem(`${storageKey}_img`, imgStorage)
-    window.localStorage.setItem(storageKey, storeString)
+    window.localStorage.setItem(`${storeKey}_img`, imgStorage)
+    window.localStorage.setItem(storeKey, storeString)
 }
 
-function getStorage() {
-    imgStorage = window.localStorage.getItem(`${storageKey}_img`)
-    const storeString = window.localStorage.getItem(storageKey)
+function getStorage(skey=null) {
+    storeKey = skey||storageKey
+    const tempStorage = {'i':null,'s':{'radio':{}, 'slide':{}, 'text':{}, 'check':{}}}
+    tempStorage.i = window.localStorage.getItem(`${storeKey}_img`)
+    const storeString = window.localStorage.getItem(storeKey)
     const storeJSON = JSON.parse(storeString)
     for (key in storeJSON) {
-        storage[key] = storeJSON[key]
+        tempStorage.s[key] = storeJSON[key]
     }
+    return tempStorage
 }
 
 function setStorage() {
@@ -53,7 +70,9 @@ function readStorage() {
     console.log(inputData)
 }
 
-function resetAll() {
+function resetAll() 
+    const confirmSave = confirm("Do you want to save your work before resetting?");
+    if (confirmSave) { saveBtn.click() }
     resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
     for (key in inputData) {
         let elType = inputData[key].type;
@@ -86,8 +105,35 @@ function resetAll() {
     console.log(inputData)
 }
 
+// Populate the save dropdown
+function populateSaveDropdown() {
+  select.innerHTML = ''; // Clear
+  const defaultOpt = document.createElement('option');
+  defaultOpt.textContent = 'Select Saved';
+  defaultOpt.disabled = true;
+  defaultOpt.selected = true;
+  select.appendChild(defaultOpt);
+
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key?.startsWith('CHARTAB_store_n') && !key.endsWith('_img')) {
+      if (!(key in savedData)) {
+        savedData[key] = getStorage(key);
+      }
+
+      const name = savedData[key]?.s?.text?.['in-name'] || '(no name)';
+      const option = document.createElement('option');
+      option.value = key;
+      option.textContent = name;
+      select.appendChild(option);
+    }
+  }
+}
+
 document.addEventListener("DOMContentLoaded", (event) => {
-    getStorage()
+    const tempStorage = getStorage()
+    storage = tempStorage.s
+    imgStorage = tempStorage.i
     readStorage()
 
     console.log(imgStorage)
@@ -103,6 +149,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             imgStorage = fileReader.result;
         }
     });
+    
 
     clearBtn.addEventListener('click', (e) => {
         imgStorage = ''
@@ -213,6 +260,35 @@ document.addEventListener("DOMContentLoaded", (event) => {
         document.querySelectorAll(".rating").forEach((el) => {
             inputData[el.id].bounds = el.getBoundingClientRect()
         })
+    });
+
+    // Handle selection from dropdown
+    select.addEventListener('change', (e) => {
+        const key = e.target.value;
+        if (!key || !savedData[key]) return;
+
+        const confirmSave = confirm("Do you want to save your current work before switching?");
+        if (confirmSave) { saveBtn.click() }
+
+        storage = savedData[key].s;
+        imageStorage = savedData[key].i;
+        storageKey = key;
+
+        readStorage();
+    });
+
+
+    // Save button click handler
+    saveBtn.addEventListener('click', () => {
+        const charName = sanitizeName(storage.text?.['in-name'] || 'unknown');
+        const uuid = shortUUID();
+        const key = `CHARTAB_store_n${charName}_${uuid}`;
+        const imgKey = `${key}_img`;
+        
+        localStorage.setItem(key, JSON.stringify(storage));
+        localStorage.setItem(imgKey, imageStorage);
+        savedData[key] = getStorage(key);
+        populateSaveDropdown();
     });
 
     setStorage()
