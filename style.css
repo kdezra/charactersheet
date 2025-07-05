@@ -26,6 +26,10 @@
     --water: #5CC6FB;
     --wind: #FFE9A1;
     --earth: #2BD458;
+
+    --chk-yes: "✘";
+    --chk-idk: "?";
+    --chk-ish: "/";
 }
 
 body {
@@ -372,7 +376,7 @@ input {
 }
 
 .sheet-main .checkbox .box.checked::before {
-    content: "✘";
+    content: var(--chk-yes);
     color: var(--accent);
     font-family: monospace;
     font-weight: bold;
@@ -382,7 +386,7 @@ input {
 }
 
 .sheet-main .checkbox .box.checkedidk::before {
-    content: "?";
+    content: var(--chk-idk);
     color: var(--accent);
     font-family: monospace;
     font-weight: bold;
@@ -392,7 +396,7 @@ input {
 }
 
 .sheet-main .checkbox .box.checkedish::before {
-    content: "/";
+    content: var(--chk-ish);
     color: var(--accent);
     font-family: monospace;
     font-weight: bold;
