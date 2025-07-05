@@ -61,8 +61,7 @@ function resetAll() {
                 el.classList = `rating ${resetVal}`
                 break;
             case "slide":
-                const sliderline = el.children[1]
-                const slidermark = sliderline.children[0]
+                const slidermark = document.querySelector(`#${key} .slidermark`)
                 slidermark.style.width = resetVal
                 break;
             case "check":
@@ -145,8 +144,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Sliders
     document.querySelectorAll(".slider").forEach((el) => {
-        const sliderline = el.children[1]
-        const slidermark = sliderline.children[0]
+        const sliderline = document.querySelector(`#${el.id} .sliderline`)
+        const slidermark = document.querySelector(`#${el.id} .slidermark`)
         if (el.id in inputData) {
             slidermark.style.width = inputData[el.id].data
         } else {
@@ -155,12 +154,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
         inputData[el.id].mark = slidermark
         inputData[el.id].bounds = sliderline.getBoundingClientRect()
 
+        console.log(inputData[el.id])
+
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
             const perc = 100*Math.max(0, Math.min(1, loc / elem.bounds.width));
             elem.data = `${Math.round(elem.perc)}%`;
+            console.log(elem.data)
             elem.mark.style.width = elem.data;
             setStorage()
         });
