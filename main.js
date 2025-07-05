@@ -3,16 +3,16 @@ const image = document.getElementById('portrait');
 
 ratings = {}
 starLocs = {
-    'one-half': 6,
-    'one': 15,
-    'two-half': 28,
-    'two': 37,
-    'three-half': 46,
-    'three': 55,
-    'four-half': 65,
-    'four': 76,
-    'five-half': 89,
-    'five': 200
+    'one-half': 13,
+    'one': 20,
+    'two-half': 33,
+    'two': 40,
+    'three-half': 53,
+    'three': 60,
+    'four-half': 73,
+    'four': 80,
+    'five-half': 93,
+    'five': 110
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
