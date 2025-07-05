@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         inputData[el.id] = {
             'type': 'slide',
             'element':el,
-            'bounds': el.getBoundingClientRect(),
+            'bounds': el.getBoundingClientRect().width,
             'perc': 0,
             'loc': 0
         }
@@ -80,9 +80,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
             console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
-            console.log(elem)
             elem.loc = e.x - elem.bounds.x;
-            elem.perc = 100*(elem.loc / bounds.width);
+            elem.perc = 100*(elem.loc / elem.bounds.width);
             console.log(elem.perc)
         });
     })
