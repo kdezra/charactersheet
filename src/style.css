@@ -85,12 +85,13 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: left;
+    align-items: center;
 }
 
 #page-icon {
     width: 48px;
     height: 48px;
-    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .head-credits {
