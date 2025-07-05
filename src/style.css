@@ -69,7 +69,7 @@ body {
     flex-direction: row;
 }
 
-.export,
+.btns,
 .controls > div {
     padding: 0;
     margin: 0;
@@ -154,14 +154,14 @@ input {
     width: 180px;
 }
 
-.export input {
+.btns input {
     background-color: var(--accent);
     color: var(--dark);
     margin: 0 5px;
     font-size: .8em;
 }
 
-.export input:disabled {
+.btns input:disabled {
     opacity: 0.9;
 }
 
