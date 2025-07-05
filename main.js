@@ -2,8 +2,8 @@ const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 let imageData = null;
 
-ratings = {}
-starLocs = {
+inputData = {}
+const starLocs = {
     'one-half': 13,
     'one': 20,
     'two-half': 33,
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Check Boxes
     document.querySelectorAll(".rating").forEach((el) => {
-        ratings[el.id] = {
+        inputData[el.id] = {
             'type':'radio',
             'element':el,
             'bounds': el.getBoundingClientRect(),
@@ -41,12 +41,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
         el.addEventListener("mousemove", (e) => {
             const elId = e.target.id||e.target.parentElement.id
-            const elem = ratings[elId]
+            const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
         });
         el.addEventListener("click", (e) => {
             const elId = e.target.id||e.target.parentElement.id
-            const elem = ratings[elId]
+            const elem = inputData[elId]
             const eloc = elem.loc
             console.log(elId, eloc, elem);
 
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
     // Sliders
     document.querySelectorAll(".sliderline").forEach((el) => {
-        ratings[el.id] = {
+        inputData[el.id] = {
             'type': 'slide',
             'element':el,
             'bounds': el.getBoundingClientRect(),
@@ -72,9 +72,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
         el.addEventListener("mousemove", (e) => {
             const elId = e.target.id||e.target.parentElement.id
-            const elem = ratings[elId]
+            const elem = inputData[elId]
             elem.loc = e.x - elem.bounds.x;
             print(e.target)
+        });
+    })
+
+
+    document.querySelectorAll(".sliderline").forEach((el) => {
+        inputData[el.id] = {
+            'type': 'check',
+            'element':el,
+            'checked': false
+        }
+        el.addEventListener("click", (e) => {
+            const elId = e.target.id
+            const elem = inputData[elId]
+            elem.checked = !elem.checked
+            elem.element.classList = elem.checked?'box checked':'box';
         });
     })
 })
