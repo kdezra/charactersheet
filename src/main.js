@@ -76,38 +76,39 @@ function readStorage() {
 
 function resetAll() {
     const confirmSave = confirm("Are you sure you would like to make a new character? Unsaved data will be lost.");
-    if (confirmSave) { saveBtn.click() }
-    storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
-    resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
-    for (key in inputData) {
-        let elType = inputData[key].type;
-        let resetVal = resetKey[elType]
+    if (confirmSave) {
+        storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
+        resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
+        for (key in inputData) {
+            let elType = inputData[key].type;
+            let resetVal = resetKey[elType]
 
-        storage[inputData[key].type][key] = resetVal
-        inputData[key].data = resetVal
+            storage[inputData[key].type][key] = resetVal
+            inputData[key].data = resetVal
 
-        const el = document.getElementById(key)
-        switch (elType) {
-            case "text":
-                el.value = resetVal
-                break;
-            case "radio":
-                el.classList = `rating ${resetVal}`
-                break;
-            case "slide":
-                const slidermark = document.querySelector(`#${key} .slidermark`)
-                slidermark.style.width = resetVal
-                break;
-            case "check":
-                el.classList = `box ${resetVal}`.trim()
-                break;
-            default:  break;
+            const el = document.getElementById(key)
+            switch (elType) {
+                case "text":
+                    el.value = resetVal
+                    break;
+                case "radio":
+                    el.classList = `rating ${resetVal}`
+                    break;
+                case "slide":
+                    const slidermark = document.querySelector(`#${key} .slidermark`)
+                    slidermark.style.width = resetVal
+                    break;
+                case "check":
+                    el.classList = `box ${resetVal}`.trim()
+                    break;
+                default:  break;
+            }
         }
+        imgStorage = ''
+        image.setAttribute('style', '');
+        console.log(storage)
+        console.log(inputData)
     }
-    imgStorage = ''
-    image.setAttribute('style', '');
-    console.log(storage)
-    console.log(inputData)
 }
 
 function populateSaveDropdown() {
@@ -272,14 +273,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const key = e.target.value;
         if (!key || !savedData[key]) return;
 
+        confirm("Are you sure you would like to switch characters? Unsaved data will be lost.");
         const confirmSave = confirm("Do you want to save your current work before switching?");
-        if (confirmSave) { saveBtn.click() }
+        if (confirmSave) {
+            storage = savedData[key].s;
+            imgStorage = savedData[key].i;
+            storageKey = key;
 
-        storage = savedData[key].s;
-        imgStorage = savedData[key].i;
-        storageKey = key;
-
-        readStorage();
+            readStorage();
+        }
     });
 
 
