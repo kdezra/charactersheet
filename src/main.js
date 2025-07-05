@@ -56,6 +56,10 @@ document.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 
+    document.addEventListener("resize", (e) => {
+        console.log("RESIZED", e)
+    });
+
     // Text Fill
     document.querySelectorAll(".text-fill").forEach((el) => {
         inputData[el.id] = {
@@ -64,7 +68,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'val': 0
         }
         el.addEventListener("change", (e) => {
-            console.log(e)
+            console.log("TEXT CHANGED", e)
         })
     });
 
