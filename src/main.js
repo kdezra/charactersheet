@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         image.setAttribute('style', '')
     });
 
-    printBtn.addEventListener('click', print)
+    // printBtn.addEventListener('click', print)
     resetBtn.addEventListener('click', resetAll)
 
     // Text Fill
