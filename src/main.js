@@ -1,24 +1,15 @@
 const inputData = {}
-const storage = {'img':{}, 'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
+const storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
+const imgStorage = null;
+const storageKey = "CHARTAB_store"
 
 const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 const clearBtn = document.getElementById('portrait-clear');
 const resetBtn = document.getElementById('reset');
-const printBtn = document.getElementById('portrait');
-const nLocs = {
-    'zero': 5,
-    'one-half': 13,
-    'one': 20,
-    'two-half': 33,
-    'two': 40,
-    'three-half': 53,
-    'three': 60,
-    'four-half': 73,
-    'four': 80,
-    'five-half': 93,
-    'five': 110
-}
+const printBtn = document.getElementById('print');
+const nLocs = { 'zero': 5, 'one-half': 13, 'one': 20, 'two-half': 33, 'two': 40,
+                'three-half': 53, 'three': 60, 'four-half': 73, 'four': 80, 'five-half': 93, 'five': 110 }
 
 function findParent(e, c, attr = "class") {
     if ((e.getAttribute(attr)||" ").split(" ").includes(c)) return e;
@@ -28,6 +19,12 @@ function findParent(e, c, attr = "class") {
         if ((el.getAttribute(attr)||" ").split(" ").includes(c)) return el;
     }
     return;
+}
+
+function storeStorage() {
+    const storeString = JSON.stringify(storage)
+    window.localStorage.setItem(`${storageKey}_img`, imgStorage)
+    window.localStorage.setItem(storageKey, storeString)
 }
 
 function setStorage() {
@@ -47,10 +44,14 @@ function readStorage() {
 }
 
 function resetAll() {
-    resetKey = {'img':'', 'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
+    resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
     for (key in inputData) {
         let elType = inputData[key].type;
         let resetVal = resetKey[elType]
+
+        storage[inputData[key].type][key] = resetVal
+        inputData[key].data = resetVal
+
         const el = document.getElementById(key)
         switch (elType) {
             case "text":
@@ -67,13 +68,13 @@ function resetAll() {
             case "check":
                 el.classList = `box ${resetVal}`.trim()
                 break;
-            case "img":
-                image.setAttribute('style', resetVal);
-                break;
             default:  break;
         }
     }
-    setStorage()
+    imgStorage = ''
+    image.setAttribute('style', '');
+    console.log(storage)
+    console.log(inputData)
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -83,14 +84,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
         fileReader.readAsDataURL(file);
         fileReader.onload = function () {
             image.setAttribute('style', `background-image: url('${fileReader.result}')`);
-            inputData.portrait = {'type':'img' ,'data': fileReader.result};
+            imgStorage = fileReader.result;
+        }
+        if (imgStorage) {
+            image.setAttribute('style', `background-image: url('${imgStorage}')`);
         }
     });
 
     clearBtn.addEventListener('click', (e) => {
-        inputData.portrait.data = ''
-        image.setAttribute('style', '');
-        setStorage()
+        imgStorage = ''
+        image.setAttribute('style', '')
     });
 
     printBtn.addEventListener('click', print)
