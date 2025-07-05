@@ -38,6 +38,8 @@ function storeStorage(skey=null) {
     const storeString = JSON.stringify(storage)
     window.localStorage.setItem(`${storeKey}_img`, imgStorage)
     window.localStorage.setItem(storeKey, storeString)
+    window.localStorage.setItem('CHARTAB_store_img', imgStorage)
+    window.localStorage.setItem('CHARTAB_store', storeString)
 }
 
 function getStorage(skey=null) {
@@ -73,7 +75,7 @@ function readStorage() {
 }
 
 function resetAll() {
-    const confirmSave = confirm("Do you want to save your work before resetting?");
+    const confirmSave = confirm("Are you sure you would like to make a new character? Unsaved data will be lost.");
     if (confirmSave) { saveBtn.click() }
     storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
     resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
@@ -274,7 +276,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         if (confirmSave) { saveBtn.click() }
 
         storage = savedData[key].s;
-        imageStorage = savedData[key].i;
+        imgStorage = savedData[key].i;
         storageKey = key;
 
         readStorage();
@@ -289,7 +291,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const imgKey = `${key}_img`;
         
         localStorage.setItem(key, JSON.stringify(storage));
-        localStorage.setItem(imgKey, imageStorage);
+        localStorage.setItem(imgKey, imgStorage);
         savedData[key] = getStorage(key);
         populateSaveDropdown();
     });
