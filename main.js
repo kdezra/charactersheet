@@ -46,17 +46,16 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'type':'radio',
             'element':el,
             'bounds': el.getBoundingClientRect(),
-            'n': 0,
-            'loc': 0
+            'n': 0
         }
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "rating").id
             const elem = inputData[elId]
-            const eloc = e.x - elem.bounds.x;
-            console.log(elId, eloc, elem);
+            const loc = e.x - elem.bounds.x;
+            console.log(elId, loc, elem);
 
             for (n in nLocs) {
-                if (eloc < nLocs[n]) {
+                if (loc < nLocs[n]) {
                     console.log(n);
                     elem.element.classList = `rating ${n}`
                     elem.n = n
@@ -75,16 +74,15 @@ document.addEventListener("DOMContentLoaded", (event) => {
             'element':el,
             'mark':slidermark,
             'bounds': sliderline.getBoundingClientRect(),
-            'perc': 0,
-            'loc': 0
+            'perc': 0
         }
         
         el.addEventListener("click", (e) => {
             console.log(e)
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
-            elem.loc = e.x - elem.bounds.x;
-            elem.perc = Math.max(0,Math.min((elem.loc / elem.bounds.width),1));
+            const loc = e.x - elem.bounds.x;
+            elem.perc = Math.max(0,Math.min((loc / elem.bounds.width),1));
             elem.mark.style.width = `${Math.round(100*elem.perc)}%`;
             console.log(elem.perc)
         });
