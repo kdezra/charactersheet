@@ -128,6 +128,10 @@ function populateSaveDropdown() {
       const option = document.createElement('option');
       option.value = key;
       option.textContent = name;
+      if (storageKey != baseKey && storageKey == key) {
+        option.selected = true
+        defaultOpt.selected = false
+      }
       select.appendChild(option);
     }
   }
