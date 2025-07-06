@@ -144,8 +144,8 @@ function ignoreElement(element) {
 
 function downloadSave() {
     html2canvas(document.body, {
-        windowWidth: document.body.scrollWidth,
-        windowHeight: document.body.scrollHeight,
+        windowWidth: 650,
+        windowHeight: document.body.scrollHeight - 42,
         ignoreElements: ignoreElement
     }).then(function(canvas) {
         let img = canvas.toDataURL("image/png");
