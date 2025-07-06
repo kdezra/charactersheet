@@ -75,36 +75,38 @@ function readStorage() {
 }
 
 function resetAll() {
-        storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
-        resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
-        for (key in inputData) {
-            let elType = inputData[key].type;
-            let resetVal = resetKey[elType]
+    storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
+    resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
+    for (key in inputData) {
+        let elType = inputData[key].type;
+        let resetVal = resetKey[elType]
 
-            storage[inputData[key].type][key] = resetVal
-            inputData[key].data = resetVal
+        storage[inputData[key].type][key] = resetVal
+        inputData[key].data = resetVal
 
-            const el = document.getElementById(key)
-            switch (elType) {
-                case "text":
-                    el.value = resetVal
-                    break;
-                case "radio":
-                    el.classList = `rating ${resetVal}`
-                    break;
-                case "slide":
-                    const slidermark = document.querySelector(`#${key} .slidermark`)
-                    slidermark.style.width = resetVal
-                    break;
-                case "check":
-                    el.classList = `box ${resetVal}`.trim()
-                    break;
-                default:  break;
-            }
+        const el = document.getElementById(key)
+        switch (elType) {
+            case "text":
+                el.value = resetVal
+                break;
+            case "radio":
+                el.classList = `rating ${resetVal}`
+                break;
+            case "slide":
+                const slidermark = document.querySelector(`#${key} .slidermark`)
+                slidermark.style.width = resetVal
+                break;
+            case "check":
+                el.classList = `box ${resetVal}`.trim()
+                break;
+            default:  break;
         }
-        imgStorage = ''
-        image.setAttribute('style', '');
-        storageKey = baseKey
+    }
+    imgStorage = ''
+    image.setAttribute('style', '');
+    storageKey = baseKey
+    populateSaveDropdown()
+    removeBtn.setAttribute('style', 'display:none')
 }
 
 function populateSaveDropdown() {
