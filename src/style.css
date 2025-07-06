@@ -31,7 +31,7 @@
 }
 
 body {
-    background: var(--dark);
+    background-color: var(--dark);
     margin: 0;
     padding: 1em;
     line-height: 14px;
@@ -314,7 +314,7 @@ input {
     display: block;
     height: 1.3em;
     width: 1.3em;
-    background: var(--divider);
+    background-color: var(--divider);
     border-radius: 100%;
 }
 
@@ -336,7 +336,7 @@ input {
 .sheet-main span.rating.three-half>span:nth-of-type(3),
 .sheet-main span.rating.four-half>span:nth-of-type(4),
 .sheet-main span.rating.five-half>span:nth-of-type(5) {
-    background: linear-gradient(to right, var(--accent) 50%, var(--divider) 0%);
+    background-image: linear-gradient(to right, var(--accent) 50%, var(--divider) 0%);
 }
 
 .sheet-main span.field>b,
