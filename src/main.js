@@ -131,8 +131,23 @@ function populateSaveDropdown() {
   }
 }
 
+function ignoreElement(element) {
+    if (element.hasAttribute('placeholder')) {
+        if (!element.value) {
+            return true
+        }
+    }
+    return false
+}
+
 function downloadSave() {
-    console.log(storageKey)
+    html2canvas(document.body, {
+        windowWidth: document.body.scrollWidth,
+        windowHeight: document.body.scrollHeight,
+        ignoreElements: ignoreElement
+    }).then(function(canvas) {
+        document.body.appendChild(canvas);
+    })
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
