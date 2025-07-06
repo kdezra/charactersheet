@@ -1,6 +1,7 @@
 const inputData = {}
 const savedData = {}
 const keyMap = {}
+const baseKey = "CHARTAB_store"
 
 let storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
 let storageKey = "CHARTAB_store"
@@ -39,8 +40,8 @@ function storeStorage(skey=null) {
     const storeString = JSON.stringify(storage)
     window.localStorage.setItem(`${storeKey}_img`, imgStorage)
     window.localStorage.setItem(storeKey, storeString)
-    window.localStorage.setItem('CHARTAB_store_img', imgStorage)
-    window.localStorage.setItem('CHARTAB_store', storeString)
+    window.localStorage.setItem(`${baseKey}_img`, imgStorage)
+    window.localStorage.setItem(baseKey, storeString)
 }
 
 function getStorage(skey=null) {
@@ -105,6 +106,7 @@ function resetAll() {
         }
         imgStorage = ''
         image.setAttribute('style', '');
+        storageKey = baseKey
         console.log(storage)
         console.log(inputData)
 }
@@ -119,7 +121,7 @@ function populateSaveDropdown() {
 
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key?.startsWith('CHARTAB_store_n') && !key.endsWith('_img')) {
+    if (key?.startsWith(`${baseKey}_n`) && !key.endsWith('_img')) {
       if (!(key in savedData)) {
         savedData[key] = getStorage(key);
       }
@@ -288,8 +290,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const key = e.target.value;
         if (!key || !savedData[key]) return;
 
-        confirm("Are you sure you would like to switch characters? Unsaved data will be lost.");
-        const confirmSave = confirm("Do you want to save your current work before switching?");
+        const confirmSave = confirm("Are you sure you would like to switch characters? Unsaved data will be lost.");
         if (confirmSave) {
             storage = savedData[key].s;
             imgStorage = savedData[key].i;
@@ -297,20 +298,24 @@ document.addEventListener("DOMContentLoaded", (event) => {
 
             readStorage();
         }
+        removeBtn.setAttribute('style','');
     });
 
 
     // Save button click handler
     saveBtn.addEventListener('click', () => {
-        const charName = sanitizeName(storage.text?.['in-name'] || 'unknown');
-        const uuid = shortUUID();
-        const key = `CHARTAB_store_n${charName}_${uuid}`;
-        const imgKey = `${key}_img`;
+        let key = storageKey;
+        if (storageKey == baseKey) {
+            const charName = sanitizeName(storage.text?.['in-name'] || 'unknown');
+            const uuid = shortUUID();
+            key = `${baseKey}_n${charName}_${uuid}`;
+        }
         
         localStorage.setItem(key, JSON.stringify(storage));
-        localStorage.setItem(imgKey, imgStorage);
+        localStorage.setItem(`${key}_img`, imgStorage);
         savedData[key] = getStorage(key);
         populateSaveDropdown();
+        removeBtn.setAttribute('style','');
     });
 
     setStorage()
