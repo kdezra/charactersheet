@@ -107,6 +107,7 @@ function resetAll() {
     storageKey = baseKey
     populateSaveDropdown()
     removeBtn.setAttribute('style', 'display:none')
+    setStorage()
 }
 
 function populateSaveDropdown() {
