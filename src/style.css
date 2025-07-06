@@ -25,7 +25,7 @@
     --wind: #FFE9A1;
     --earth: #2BD458;
 
-    --chk-yes: "✘";
+    --chk-yes: "x";
     --chk-idk: "?";
     --chk-ish: "/";
 }
@@ -466,28 +466,4 @@ input {
 
 .sheet-main .right.flex b {
     font-size: 0.85em;
-}
-
-@media print {
-    body {
-
-    }
-    .head {
-        display: none;
-    }
-    .sheet-cont {
-        box-sizing: border-box;
-        background-color: var(--accent);
-        margin: auto;
-        width: 100%;
-        font-weight: 400;
-    }
-    .controls,
-    .img-control {
-        display: none;
-    }
-    ::placeholder,
-    ::-ms-input-placeholder {
-        opacity: 0;
-    }
 }

@@ -1,10 +1,10 @@
 const inputData = {}
 const savedData = {}
 const keyMap = {}
-const baseKey = "CHARTAB_store"
+const baseKey = "chartable"
 
 let storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
-let storageKey = "CHARTAB_store"
+let storageKey = "chartable"
 let imgStorage = null;
 
 const fileInput = document.getElementById('portrait-input');
@@ -121,7 +121,6 @@ function populateSaveDropdown() {
       if (!(key in savedData)) {
         savedData[key] = getStorage(key);
       }
-
       const name = savedData[key]?.s?.text?.['in-name'] || '(no name)';
       const option = document.createElement('option');
       option.value = key;
@@ -146,7 +145,14 @@ function downloadSave() {
         windowHeight: document.body.scrollHeight,
         ignoreElements: ignoreElement
     }).then(function(canvas) {
-        document.body.appendChild(canvas);
+        let img = canvas.toDataURL("image/png");
+        let a = document.createElement('a');
+        a.href = img;
+        a.download = `${storageKey}.jpg`;
+        a.style.display = 'none';
+        document.body.appendChild(a);
+        a.click();
+        a.remove()
     })
 }
 
