@@ -306,8 +306,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const uuid = shortUUID();
         const key = `CHARTAB_store_n${charName}_${uuid}`;
         const imgKey = `${key}_img`;
-
-
         
         localStorage.setItem(key, JSON.stringify(storage));
         localStorage.setItem(imgKey, imgStorage);
