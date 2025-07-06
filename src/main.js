@@ -136,6 +136,9 @@ function ignoreElement(element) {
             return true
         }
     }
+    if (element.className?.split(" ")?.includes("ignore")) {
+        return true
+    }
     return false
 }
 
