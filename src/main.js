@@ -10,8 +10,9 @@ const fileInput = document.getElementById('portrait-input');
 const image = document.getElementById('portrait');
 const clearBtn = document.getElementById('portrait-clear');
 const resetBtn = document.getElementById('reset-btn');
-const printBtn = document.getElementById('print-btn');
+const downloadBtn = document.getElementById('download-btn');
 const saveBtn = document.getElementById('save-btn');
+const removeBtn = document.getElementById('remove-btn');
 const select = document.getElementById('save-select');
 const nLocs = { 'zero': 5, 'one-half': 13, 'one': 20, 'two-half': 33, 'two': 40,
                 'three-half': 53, 'three': 60, 'four-half': 73, 'four': 80, 'five-half': 93, 'five': 110 }
@@ -75,8 +76,6 @@ function readStorage() {
 }
 
 function resetAll() {
-    const confirmSave = confirm("Are you sure you would like to make a new character? Unsaved data will be lost.");
-    if (confirmSave) {
         storage = {'radio':{}, 'slide':{}, 'text':{}, 'check':{}}
         resetKey = {'slide':'0%', 'check': 0, 'radio': 'zero', 'text': ''}
         for (key in inputData) {
@@ -108,7 +107,6 @@ function resetAll() {
         image.setAttribute('style', '');
         console.log(storage)
         console.log(inputData)
-    }
 }
 
 function populateSaveDropdown() {
@@ -133,6 +131,10 @@ function populateSaveDropdown() {
       select.appendChild(option);
     }
   }
+}
+
+function downloadSave() {
+    console.log(storageKey)
 }
 
 document.addEventListener("DOMContentLoaded", (event) => {
@@ -162,8 +164,21 @@ document.addEventListener("DOMContentLoaded", (event) => {
         image.setAttribute('style', '')
     });
 
-    // printBtn.addEventListener('click', print)
-    resetBtn.addEventListener('click', resetAll)
+    downloadBtn.addEventListener('click', downloadSave)
+    resetBtn.addEventListener('click', () => {
+        const confirmSave = confirm("Are you sure you would like to make a new character? Unsaved data will be lost.");
+        if (confirmSave){
+            resetAll()
+        }
+    })
+    removeBtn.addEventListener('click', () => {
+        const confirmSave = confirm("Are you sure you would like to remove this character? Unsaved data will be lost.");
+        if (confirmSave){
+            window.localStorage.removeItem(storageKey)
+            window.localStorage.removeItem(`${storageKey}_img`)
+            resetAll()
+        }
+    })
 
     // Text Fill
     document.querySelectorAll(".text-fill").forEach((el) => {
@@ -291,6 +306,8 @@ document.addEventListener("DOMContentLoaded", (event) => {
         const uuid = shortUUID();
         const key = `CHARTAB_store_n${charName}_${uuid}`;
         const imgKey = `${key}_img`;
+
+
         
         localStorage.setItem(key, JSON.stringify(storage));
         localStorage.setItem(imgKey, imgStorage);
