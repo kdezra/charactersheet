@@ -64,7 +64,6 @@ function setStorage() {
         storage[inputData[key].type][key] = inputData[key].data
     }
     storeStorage()
-    console.log(storage)
 }
 function readStorage() {
     for (elType in storage) {
@@ -73,7 +72,6 @@ function readStorage() {
             inputData[key] = {'type': elType, 'data': typeIds[key]}
         }
     }
-    console.log(inputData)
 }
 
 function resetAll() {
@@ -107,8 +105,6 @@ function resetAll() {
         imgStorage = ''
         image.setAttribute('style', '');
         storageKey = baseKey
-        console.log(storage)
-        console.log(inputData)
 }
 
 function populateSaveDropdown() {
@@ -146,7 +142,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
     readStorage()
     populateSaveDropdown()
 
-    console.log(imgStorage)
     if (imgStorage) {
         image.setAttribute('style', `background-image: url('${imgStorage}')`);
     }
@@ -238,15 +233,12 @@ document.addEventListener("DOMContentLoaded", (event) => {
         inputData[el.id].mark = slidermark
         inputData[el.id].bounds = sliderline.getBoundingClientRect()
 
-        console.log(inputData[el.id])
-
         el.addEventListener("click", (e) => {
             const elId = findParent(e.target, "slider").id
             const elem = inputData[elId]
             const loc = e.x - elem.bounds.x;
             const perc = 100*Math.max(0, Math.min(1, loc / elem.bounds.width));
             elem.data = `${Math.round(perc)}%`;
-            console.log(elem.data)
             elem.mark.style.width = elem.data;
             setStorage()
         });
